@@ -1,0 +1,4 @@
+/mnt/c/Users/Yael/OneDrive/שנה ג סמסטר א/תכנות מתקדם/project1/part1-progect1/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Yael/OneDrive/שנה ג סמסטר א/תכנות מתקדם/project1/part1-progect1/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Yael/OneDrive/שנה ג סמסטר א/תכנות מתקדם/project1/part1-progect1/build/CMakeFiles/test.dir
+/mnt/c/Users/Yael/OneDrive/שנה ג סמסטר א/תכנות מתקדם/project1/part1-progect1/build/CMakeFiles/CalcTests.dir
