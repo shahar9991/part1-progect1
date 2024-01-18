@@ -1,3 +1,0 @@
-SumTest.BasicTest 2 0
----
-SumTest.BasicTest
