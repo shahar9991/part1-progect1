@@ -1,11 +1,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <line>
 using namespace std;
 
 
+
 void workflow(){
-    int input = get_input();
+    line input = get_input();
     is_valid_input = check_input();
     if (is_valid_input == FALSE){
         return;
