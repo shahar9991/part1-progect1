@@ -1,14 +1,13 @@
 CalcTests 8 0.00172472
 CalcTests.isValidInputFormat 4 0.00356888
-CalcTests.isValidInputFormat_ValidInput 16 0.00290102
+CalcTests.isValidInputFormat_ValidInput 20 0.00109898
 CalcTests.isValidInputFormat_InvalidInput 7 0.00329519
 CalcTests.isValidInputFormat_ValidInput1 1 0.0162127
-CalcTests.isValidInputFormat_ValidInput_HashFunction1 10 0.0023209
-CalcTests.isValidInputFormat_ValidInput_HashFunction2 10 0.0032342
-CalcTests.isValidInputFormat_ValidInput_HashFunctions1And2 10 0.0037042
-CalcTests.isValidInputFormat_ValidInput_HashFunctions2And1 9 0
-CalcTests.isValidInputFormat_InvalidInput_HashFunction1 7 0.00418502
+CalcTests.isValidInputFormat_ValidInput_HashFunction1 14 0.00330138
+CalcTests.isValidInputFormat_ValidInput_HashFunction2 14 0.00233282
+CalcTests.isValidInputFormat_ValidInput_HashFunctions1And2 14 0.00192752
+CalcTests.isValidInputFormat_ValidInput_HashFunctions2And1 13 0.00163066
+CalcTests.isValidInputFormat_InvalidInput_HashFunction1 10 0.00220653
 CalcTests.isValidInputFormat_InvalidInput_HashFunctions1And2 0 0
-CalcTests.isValidInputFormat_InvalidInput_HashFunction11 6 0.00533946
+CalcTests.isValidInputFormat_InvalidInput_HashFunction11 9 0.00206486
 ---
-CalcTests.isValidInputFormat_ValidInput_HashFunctions2And1
