@@ -139,30 +139,6 @@ CalcTests/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CalcTests.dir/build.make CMakeFiles/CalcTests.dir/build
 .PHONY : CalcTests/fast
 
-tests/calc_test.o: tests/calc_test.cpp.o
-.PHONY : tests/calc_test.o
-
-# target to build an object file
-tests/calc_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CalcTests.dir/build.make CMakeFiles/CalcTests.dir/tests/calc_test.cpp.o
-.PHONY : tests/calc_test.cpp.o
-
-tests/calc_test.i: tests/calc_test.cpp.i
-.PHONY : tests/calc_test.i
-
-# target to preprocess a source file
-tests/calc_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CalcTests.dir/build.make CMakeFiles/CalcTests.dir/tests/calc_test.cpp.i
-.PHONY : tests/calc_test.cpp.i
-
-tests/calc_test.s: tests/calc_test.cpp.s
-.PHONY : tests/calc_test.s
-
-# target to generate assembly for a file
-tests/calc_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CalcTests.dir/build.make CMakeFiles/CalcTests.dir/tests/calc_test.cpp.s
-.PHONY : tests/calc_test.cpp.s
-
 tests/test_main.o: tests/test_main.cpp.o
 .PHONY : tests/test_main.o
 
@@ -187,6 +163,30 @@ tests/test_main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CalcTests.dir/build.make CMakeFiles/CalcTests.dir/tests/test_main.cpp.s
 .PHONY : tests/test_main.cpp.s
 
+tests/test_string.o: tests/test_string.cpp.o
+.PHONY : tests/test_string.o
+
+# target to build an object file
+tests/test_string.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CalcTests.dir/build.make CMakeFiles/CalcTests.dir/tests/test_string.cpp.o
+.PHONY : tests/test_string.cpp.o
+
+tests/test_string.i: tests/test_string.cpp.i
+.PHONY : tests/test_string.i
+
+# target to preprocess a source file
+tests/test_string.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CalcTests.dir/build.make CMakeFiles/CalcTests.dir/tests/test_string.cpp.i
+.PHONY : tests/test_string.cpp.i
+
+tests/test_string.s: tests/test_string.cpp.s
+.PHONY : tests/test_string.s
+
+# target to generate assembly for a file
+tests/test_string.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CalcTests.dir/build.make CMakeFiles/CalcTests.dir/tests/test_string.cpp.s
+.PHONY : tests/test_string.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -197,12 +197,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... CalcTests"
-	@echo "... tests/calc_test.o"
-	@echo "... tests/calc_test.i"
-	@echo "... tests/calc_test.s"
 	@echo "... tests/test_main.o"
 	@echo "... tests/test_main.i"
 	@echo "... tests/test_main.s"
+	@echo "... tests/test_string.o"
+	@echo "... tests/test_string.i"
+	@echo "... tests/test_string.s"
 .PHONY : help
 
 

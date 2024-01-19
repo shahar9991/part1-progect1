@@ -83,30 +83,30 @@ CMakeFiles/CalcTests.dir/tests/test_main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CalcTests.dir/tests/test_main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/shaha/Desktop/part1-progect1/tests/test_main.cpp -o CMakeFiles/CalcTests.dir/tests/test_main.cpp.s
 
-CMakeFiles/CalcTests.dir/tests/calc_test.cpp.o: CMakeFiles/CalcTests.dir/flags.make
-CMakeFiles/CalcTests.dir/tests/calc_test.cpp.o: ../tests/calc_test.cpp
-CMakeFiles/CalcTests.dir/tests/calc_test.cpp.o: CMakeFiles/CalcTests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/shaha/Desktop/part1-progect1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CalcTests.dir/tests/calc_test.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CalcTests.dir/tests/calc_test.cpp.o -MF CMakeFiles/CalcTests.dir/tests/calc_test.cpp.o.d -o CMakeFiles/CalcTests.dir/tests/calc_test.cpp.o -c /mnt/c/Users/shaha/Desktop/part1-progect1/tests/calc_test.cpp
+CMakeFiles/CalcTests.dir/tests/test_string.cpp.o: CMakeFiles/CalcTests.dir/flags.make
+CMakeFiles/CalcTests.dir/tests/test_string.cpp.o: ../tests/test_string.cpp
+CMakeFiles/CalcTests.dir/tests/test_string.cpp.o: CMakeFiles/CalcTests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/shaha/Desktop/part1-progect1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CalcTests.dir/tests/test_string.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CalcTests.dir/tests/test_string.cpp.o -MF CMakeFiles/CalcTests.dir/tests/test_string.cpp.o.d -o CMakeFiles/CalcTests.dir/tests/test_string.cpp.o -c /mnt/c/Users/shaha/Desktop/part1-progect1/tests/test_string.cpp
 
-CMakeFiles/CalcTests.dir/tests/calc_test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CalcTests.dir/tests/calc_test.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/shaha/Desktop/part1-progect1/tests/calc_test.cpp > CMakeFiles/CalcTests.dir/tests/calc_test.cpp.i
+CMakeFiles/CalcTests.dir/tests/test_string.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CalcTests.dir/tests/test_string.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/shaha/Desktop/part1-progect1/tests/test_string.cpp > CMakeFiles/CalcTests.dir/tests/test_string.cpp.i
 
-CMakeFiles/CalcTests.dir/tests/calc_test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CalcTests.dir/tests/calc_test.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/shaha/Desktop/part1-progect1/tests/calc_test.cpp -o CMakeFiles/CalcTests.dir/tests/calc_test.cpp.s
+CMakeFiles/CalcTests.dir/tests/test_string.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CalcTests.dir/tests/test_string.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/shaha/Desktop/part1-progect1/tests/test_string.cpp -o CMakeFiles/CalcTests.dir/tests/test_string.cpp.s
 
 # Object files for target CalcTests
 CalcTests_OBJECTS = \
 "CMakeFiles/CalcTests.dir/tests/test_main.cpp.o" \
-"CMakeFiles/CalcTests.dir/tests/calc_test.cpp.o"
+"CMakeFiles/CalcTests.dir/tests/test_string.cpp.o"
 
 # External object files for target CalcTests
 CalcTests_EXTERNAL_OBJECTS =
 
 CalcTests: CMakeFiles/CalcTests.dir/tests/test_main.cpp.o
-CalcTests: CMakeFiles/CalcTests.dir/tests/calc_test.cpp.o
+CalcTests: CMakeFiles/CalcTests.dir/tests/test_string.cpp.o
 CalcTests: CMakeFiles/CalcTests.dir/build.make
 CalcTests: CMakeFiles/CalcTests.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/shaha/Desktop/part1-progect1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable CalcTests"
