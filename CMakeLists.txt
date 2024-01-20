@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project("part1-progect1") # Replace “MyCalc” with your repo name
+project("PART1-PROJECT1") # Replace “MyCalc” with your repo name
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(FetchContent)
@@ -11,13 +11,11 @@ https://github.com/google/googletest/archive/03597a01ee50ed
 )
 enable_testing()
 set(SOURCE_FILES
-        src/bloom_filter.cpp # this is where the code we want to test
+src/calc.cpp # this is where the code we want to test
 )
 set(TEST_FILES
-        tests/test_main.cpp # this is the main for tests
-        tests/basic_tests.cpp
-        build/CalcTests  # this file contain the tests
-
+tests/test_main.cpp # this is the main for tests
+tests/test_string.cpp # this file contain the tests
 )
 add_executable(CalcTests ${TEST_FILES})
 # Link Google Test to the test executable
@@ -25,4 +23,4 @@ target_link_libraries(CalcTests PRIVATE gtest gtest_main pthread)
 # Include the source directory for tests
 target_include_directories(CalcTests PRIVATE src)
 include(GoogleTest)
-add_test(NAME CalcTests COMMAND CalcTests)
+gtest_discover_tests(CalcTests)

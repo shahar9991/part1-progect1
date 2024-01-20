@@ -1,11 +1,21 @@
 #include <iostream>
 #include <string>
 #include <vector>
+<<<<<<< HEAD
 using namespace std;
 
 
 void workflow(){
     int input = get_input();
+=======
+#include <line>
+using namespace std;
+
+
+
+void workflow(){
+    line input = get_input();
+>>>>>>> main
     is_valid_input = check_input();
     if (is_valid_input == FALSE){
         return;
@@ -22,7 +32,11 @@ void workflow(){
     else if (to_do == "check"){
         check_if_in_filter(bloom_filter, input);
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> main
 
 }
 
