@@ -1,10 +1,10 @@
-Start testing: Jan 18 15:47 IST
+Start testing: Jan 19 13:06 IST
 ----------------------------------------------------------
 1/7 Testing: CalcTests.isValidInputFormat_ValidInput
 1/7 Test: CalcTests.isValidInputFormat_ValidInput
 Command: "/mnt/c/Users/shaha/Desktop/part1-progect1/build/CalcTests" "--gtest_filter=CalcTests.isValidInputFormat_ValidInput" "--gtest_also_run_disabled_tests"
 Directory: /mnt/c/Users/shaha/Desktop/part1-progect1/build
-"CalcTests.isValidInputFormat_ValidInput" start time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_ValidInput" start time: Jan 19 13:06 IST
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = CalcTests.isValidInputFormat_ValidInput
@@ -19,10 +19,10 @@ Note: Google Test filter = CalcTests.isValidInputFormat_ValidInput
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"CalcTests.isValidInputFormat_ValidInput" end time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_ValidInput" end time: Jan 19 13:06 IST
 "CalcTests.isValidInputFormat_ValidInput" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -30,7 +30,7 @@ Test Passed.
 2/7 Test: CalcTests.isValidInputFormat_ValidInput_HashFunction1
 Command: "/mnt/c/Users/shaha/Desktop/part1-progect1/build/CalcTests" "--gtest_filter=CalcTests.isValidInputFormat_ValidInput_HashFunction1" "--gtest_also_run_disabled_tests"
 Directory: /mnt/c/Users/shaha/Desktop/part1-progect1/build
-"CalcTests.isValidInputFormat_ValidInput_HashFunction1" start time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_ValidInput_HashFunction1" start time: Jan 19 13:06 IST
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = CalcTests.isValidInputFormat_ValidInput_HashFunction1
@@ -45,10 +45,10 @@ Note: Google Test filter = CalcTests.isValidInputFormat_ValidInput_HashFunction1
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.01 sec
+Test time =   0.05 sec
 ----------------------------------------------------------
 Test Passed.
-"CalcTests.isValidInputFormat_ValidInput_HashFunction1" end time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_ValidInput_HashFunction1" end time: Jan 19 13:06 IST
 "CalcTests.isValidInputFormat_ValidInput_HashFunction1" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -56,7 +56,7 @@ Test Passed.
 3/7 Test: CalcTests.isValidInputFormat_ValidInput_HashFunction2
 Command: "/mnt/c/Users/shaha/Desktop/part1-progect1/build/CalcTests" "--gtest_filter=CalcTests.isValidInputFormat_ValidInput_HashFunction2" "--gtest_also_run_disabled_tests"
 Directory: /mnt/c/Users/shaha/Desktop/part1-progect1/build
-"CalcTests.isValidInputFormat_ValidInput_HashFunction2" start time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_ValidInput_HashFunction2" start time: Jan 19 13:06 IST
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = CalcTests.isValidInputFormat_ValidInput_HashFunction2
@@ -71,10 +71,10 @@ Note: Google Test filter = CalcTests.isValidInputFormat_ValidInput_HashFunction2
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.01 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"CalcTests.isValidInputFormat_ValidInput_HashFunction2" end time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_ValidInput_HashFunction2" end time: Jan 19 13:06 IST
 "CalcTests.isValidInputFormat_ValidInput_HashFunction2" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -82,7 +82,7 @@ Test Passed.
 4/7 Test: CalcTests.isValidInputFormat_ValidInput_HashFunctions1And2
 Command: "/mnt/c/Users/shaha/Desktop/part1-progect1/build/CalcTests" "--gtest_filter=CalcTests.isValidInputFormat_ValidInput_HashFunctions1And2" "--gtest_also_run_disabled_tests"
 Directory: /mnt/c/Users/shaha/Desktop/part1-progect1/build
-"CalcTests.isValidInputFormat_ValidInput_HashFunctions1And2" start time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_ValidInput_HashFunctions1And2" start time: Jan 19 13:06 IST
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = CalcTests.isValidInputFormat_ValidInput_HashFunctions1And2
@@ -97,10 +97,10 @@ Note: Google Test filter = CalcTests.isValidInputFormat_ValidInput_HashFunctions
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.01 sec
+Test time =   0.03 sec
 ----------------------------------------------------------
 Test Passed.
-"CalcTests.isValidInputFormat_ValidInput_HashFunctions1And2" end time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_ValidInput_HashFunctions1And2" end time: Jan 19 13:06 IST
 "CalcTests.isValidInputFormat_ValidInput_HashFunctions1And2" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -108,7 +108,7 @@ Test Passed.
 5/7 Test: CalcTests.isValidInputFormat_ValidInput_HashFunctions2And1
 Command: "/mnt/c/Users/shaha/Desktop/part1-progect1/build/CalcTests" "--gtest_filter=CalcTests.isValidInputFormat_ValidInput_HashFunctions2And1" "--gtest_also_run_disabled_tests"
 Directory: /mnt/c/Users/shaha/Desktop/part1-progect1/build
-"CalcTests.isValidInputFormat_ValidInput_HashFunctions2And1" start time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_ValidInput_HashFunctions2And1" start time: Jan 19 13:06 IST
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = CalcTests.isValidInputFormat_ValidInput_HashFunctions2And1
@@ -123,10 +123,10 @@ Note: Google Test filter = CalcTests.isValidInputFormat_ValidInput_HashFunctions
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"CalcTests.isValidInputFormat_ValidInput_HashFunctions2And1" end time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_ValidInput_HashFunctions2And1" end time: Jan 19 13:06 IST
 "CalcTests.isValidInputFormat_ValidInput_HashFunctions2And1" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -134,7 +134,7 @@ Test Passed.
 6/7 Test: CalcTests.isValidInputFormat_InvalidInput_HashFunction1
 Command: "/mnt/c/Users/shaha/Desktop/part1-progect1/build/CalcTests" "--gtest_filter=CalcTests.isValidInputFormat_InvalidInput_HashFunction1" "--gtest_also_run_disabled_tests"
 Directory: /mnt/c/Users/shaha/Desktop/part1-progect1/build
-"CalcTests.isValidInputFormat_InvalidInput_HashFunction1" start time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_InvalidInput_HashFunction1" start time: Jan 19 13:06 IST
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = CalcTests.isValidInputFormat_InvalidInput_HashFunction1
@@ -149,10 +149,10 @@ Note: Google Test filter = CalcTests.isValidInputFormat_InvalidInput_HashFunctio
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"CalcTests.isValidInputFormat_InvalidInput_HashFunction1" end time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_InvalidInput_HashFunction1" end time: Jan 19 13:06 IST
 "CalcTests.isValidInputFormat_InvalidInput_HashFunction1" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -160,7 +160,7 @@ Test Passed.
 7/7 Test: CalcTests.isValidInputFormat_InvalidInput_HashFunction11
 Command: "/mnt/c/Users/shaha/Desktop/part1-progect1/build/CalcTests" "--gtest_filter=CalcTests.isValidInputFormat_InvalidInput_HashFunction11" "--gtest_also_run_disabled_tests"
 Directory: /mnt/c/Users/shaha/Desktop/part1-progect1/build
-"CalcTests.isValidInputFormat_InvalidInput_HashFunction11" start time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_InvalidInput_HashFunction11" start time: Jan 19 13:06 IST
 Output:
 ----------------------------------------------------------
 Note: Google Test filter = CalcTests.isValidInputFormat_InvalidInput_HashFunction11
@@ -175,11 +175,11 @@ Note: Google Test filter = CalcTests.isValidInputFormat_InvalidInput_HashFunctio
 [==========] 1 test from 1 test suite ran. (0 ms total)
 [  PASSED  ] 1 test.
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"CalcTests.isValidInputFormat_InvalidInput_HashFunction11" end time: Jan 18 15:47 IST
+"CalcTests.isValidInputFormat_InvalidInput_HashFunction11" end time: Jan 19 13:06 IST
 "CalcTests.isValidInputFormat_InvalidInput_HashFunction11" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Jan 18 15:47 IST
+End testing: Jan 19 13:06 IST
