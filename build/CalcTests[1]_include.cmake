@@ -1,0 +1,5 @@
+if(EXISTS "/mnt/c/Users/shaha/Desktop/part1-progect1/build/CalcTests[1]_tests.cmake")
+  include("/mnt/c/Users/shaha/Desktop/part1-progect1/build/CalcTests[1]_tests.cmake")
+else()
+  add_test(CalcTests_NOT_BUILT CalcTests_NOT_BUILT)
+endif()
