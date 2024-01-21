@@ -9,11 +9,12 @@ class Flow{
         Flow(IExecutable* commands[]) : commands(commands) {}
         void run(){ //run the program
             while (true) {
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //InputHandler- get the input and make sure it is OK
                 //according to the input- understand which command needs to be executed
                 task = InputHandler();
                 try {
-                    commands[task]->execute();
+                    commands[task]->execute(); //try to execute the required task from the commands list.
                     }
                 catch(...){}
             }
