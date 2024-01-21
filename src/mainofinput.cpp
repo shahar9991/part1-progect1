@@ -19,44 +19,41 @@ int main() {
 
     // Define hash functions based on user input
     std::function<size_t(const std::string&)> hashFunction1 = std::hash<std::string>();
-    std::function<size_t(const std::string&)> hashFunction2 = std::hash<std::string>();
+    std::function<size_t(const std::string&)> hashFunction2;
 
-    if (!useHash1) {
+    if (useHash1) {
+        hashFunction1 = std::hash<std::string>();
+    } else {
         hashFunction1 = [](const std::string&) -> size_t { return static_cast<size_t>(0); };
     }
 
-    if (!useHash2) {
+    if (useHash2) {
+        hashFunction2 = [hash1 = std::hash<std::string>()](const std::string& s) -> size_t {
+            // Call std::hash twice
+            return hash1(s) ^ hash1(s);
+        };
+    } else {
         hashFunction2 = [](const std::string&) -> size_t { return static_cast<size_t>(0); };
     }
-
     // Initialize BloomFilter using user inputs
     BloomFilter bloomFilter(size, hashFunction1, hashFunction2);
 
-    std::cout << "Bloom filter created with size " << size << " and hash functions.\n";
+    std::cout << "Bloom filter created with size " << size << " and hash functions: ";
+    if (useHash1) {
+        std::cout << "Hash 1 ";
+    }
+    if (useHash2) {
+        std::cout << "Hash 2 ";
+    }
+    std::cout << "\n";
 
     // Continuously read URLs from the user until an exit condition is met
     while (true) {
         std::vector<std::string> urls;  // Declare the vector to store URLs
-        InputHandler::readURLs(size, args, urls);
-
-        // Check if the URLs are blacklisted
-        for (const auto& url : urls) {
-            if (bloomFilter.isBlacklisted(url)) {
-                std::cout << "URL '" << url << "' is blacklisted.\n";
-            } else {
-                std::cout << "URL '" << url << "' is not blacklisted.\n";
-            }
-        }
-
-        // Add an exit condition (e.g., entering an empty string)
-        std::cout << "Enter another set of URLs or press Enter to exit: ";
-        std::string exitInput;
-        std::getline(std::cin, exitInput);
-
-        if (exitInput.empty()) {
-            break;
-        }
-    }
+        InputHandler::readURLs(size, args, urls, bloomFilter);
 
     return 0;
 }
+
+}
+

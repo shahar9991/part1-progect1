@@ -19,13 +19,40 @@ void InputHandler::printRealArgs(int size, const std::vector<int>& args) {
     std::cout << "\n";
 }
 
-void InputHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls) {
-    std::cout << "Processed URLs: ";
+void InputHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter) {
+    std::cout << "Processed URLs:\n";
     for (const auto& url : urls) {
-        std::cout << url << " ";
+        std::cout << url << "\n";
+
+        // Extract the URL number (1 or 2) from the string
+        int urlNumber = url[0] - '0';
+
+        if (urlNumber == 1) {
+            // Add the URL to the Bloom filter (excluding the first digit)
+            std::string restOfURL = url.substr(1);
+            bloomFilter.addURL(restOfURL);
+            std::cout << "(Added to Bloom Filter)\n";
+        } else if (urlNumber == 2) {
+            // Check if the URL (excluding the first digit) is blacklisted
+            std::string restOfURL = url.substr(1);
+            if (bloomFilter.isBlacklisted(restOfURL)) {
+                std::cout << "(Blacklisted)\n";
+            } else {
+                std::cout << "(Not Blacklisted)\n";
+            }
+        } else {
+            std::cout << "(Invalid URL format)\n";
+        }
     }
-    std::cout << "\n";
 }
+
+
+
+
+
+
+
+
 
 void InputHandler::readSizeAndArgs(int& size, std::vector<int>& args) {
     while (true) {
@@ -61,37 +88,19 @@ void InputHandler::readSizeAndArgs(int& size, std::vector<int>& args) {
     }
 }
 
-void InputHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls) {
+void InputHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter) {
     while (true) {
         std::cout << "Enter the URL(s) (space-separated): ";
         std::string input;
         std::getline(std::cin, input);
 
-        std::istringstream url_ss(input);
-        std::string url_part;
-
         urls.clear();  // Clear the vector before reading new URLs
 
-        bool validURL = true;
+        // Store the entire line as a single URL
+        urls.push_back(input);
 
-        while (url_ss >> url_part) {
-            if ((url_part == "1" && std::find(args.begin(), args.end(), 1) != std::end(args)) ||
-                (url_part == "2" && std::find(args.begin(), args.end(), 2) != std::end(args))) {
-                std::string url = url_part;
-                url_ss >> url_part;
-                url += " " + url_part;
-                urls.push_back(url);
-            } else {
-                validURL = false;
-                break;
-            }
-        }
-
-        if (!validURL) {
-            std::cout << "Invalid URL format. Please enter valid URLs.\n";
-            continue;
-        }
-
-        processURLs(size, args, urls);
+        processURLs(size, args, urls, bloomFilter);
     }
 }
+
+
