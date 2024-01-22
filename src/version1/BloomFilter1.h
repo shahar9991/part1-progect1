@@ -2,6 +2,7 @@
 #ifndef BLOOM_FILTER_H
 #define BLOOM_FILTER_H
 
+#include "BloomFilter1.h"
 #include <string>
 #include <vector>
 #include <functional>
