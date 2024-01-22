@@ -14,8 +14,8 @@ set(SOURCE_FILES
 src/bloom_test.cpp # this is where the code we want to test
 )
 set(TEST_FILES
-tests\test_main.cpp # this is the main for tests
-tests/bloom_test.cpp # this file contain the tests
+tests/test_main.cpp # this is the main for tests
+tests/falsepositive_test.cpp # this file contain the tests
 )
 add_executable(CalcTests ${TEST_FILES})
 # Link Google Test to the test executable

@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/CalcTests.dir/tests/test_main.cpp.o CMakeFiles/CalcTests.dir/tests/test_string.cpp.o -o CalcTests  -lgtest -lgtest_main -lpthread 
+/usr/bin/g++     CMakeFiles/CalcTests.dir/tests/test_main.cpp.o CMakeFiles/CalcTests.dir/tests/falsepositive_test.cpp.o  -o CalcTests  -lgtest -lgtest_main -lpthread 

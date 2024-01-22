@@ -1,5 +1,6 @@
 // InputHandler.cpp
 #include "InputHandler.h"
+#include "FalsePositive.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -21,6 +22,10 @@ void InputHandler::printRealArgs(int size, const std::vector<int>& args) {
 
 void InputHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter) {
     std::cout << "Processed URLs:\n";
+    // Create an instance of URLDictionary
+    FalsePositiveDictionary CheckDict;
+    int i=0;
+    std::string data = "";
     for (const auto& url : urls) {
         std::cout << url << "\n";
 
@@ -31,12 +36,15 @@ void InputHandler::processURLs(int size, const std::vector<int>& args, const std
             // Add the URL to the Bloom filter (excluding the first digit)
             std::string restOfURL = url.substr(1);
             bloomFilter.addURL(restOfURL);
+            data += "data" + std::to_string(i);
+            CheckDict.addURL(restOfURL,data);
+            i=i+1;
             std::cout << "(Added to Bloom Filter)\n";
         } else if (urlNumber == 2) {
             // Check if the URL (excluding the first digit) is blacklisted
             std::string restOfURL = url.substr(1);
             if (bloomFilter.isBlacklisted(restOfURL)) {
-                std::cout << "(Blacklisted)\n";
+                CheckDict.searchURL(restOfURL);
             } else {
                 std::cout << "(Not Blacklisted)\n";
             }
@@ -91,6 +99,7 @@ void InputHandler::readSizeAndArgs(int& size, std::vector<int>& args) {
 void InputHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter) {
     while (true) {
         std::cout << "Enter the URL(s) (space-separated): ";
+
         std::string input;
         std::getline(std::cin, input);
 
