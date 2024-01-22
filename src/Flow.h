@@ -3,6 +3,6 @@ class Flow{
         IExecutable* commands[];
 
     public:
-        Flow(IExecutable* commands[])
+        Flow(map<string, IExecutable*> commands;)
         void run();
 }
