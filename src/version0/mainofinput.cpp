@@ -27,10 +27,12 @@ int main() {
         hashFunction1 = [](const std::string&) -> size_t { return static_cast<size_t>(0); };
     }
 
-    if (useHash2) {
-        hashFunction2 = [hash1 = std::hash<std::string>()](const std::string& s) -> size_t {
-            // Call std::hash twice
-            return hash1(s) ^ hash1(s);
+     if (useHash2) {
+        // Create the second hash function using std::hash twice
+        hashFunction2 = [](const std::string& s) -> size_t {
+            size_t hashValue1 = std::hash<std::string>()(s);
+            size_t hashValue2 = std::hash<std::string>()(std::to_string(hashValue1));
+            return hashValue2;
         };
     } else {
         hashFunction2 = [](const std::string&) -> size_t { return static_cast<size_t>(0); };
