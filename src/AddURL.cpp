@@ -12,4 +12,4 @@ class addURL : public IExecutable{
             bitArray[index1] = true;
             bitArray[index2] = true;
         }
-}
+};
