@@ -1,6 +1,7 @@
 // mainofinput.cpp
-
 #include "InputHandler.h"
+#include "ArgsHandler.h"
+#include "URLsHandler.h"
 #include "BloomFilter.h"
 #include <iostream>
 #include <functional>
@@ -9,9 +10,12 @@
 int main() {
     int size;
     std::vector<int> args;
+    ArgsHandler argsHandler;
+    URLsHandler urlsHandler;
+    BloomFilter bloomFilter;
 
     // Use InputHandler to get user input
-    InputHandler::readSizeAndArgs(size, args);
+    ArgsHandler::readSizeAndArgs(size, args);
 
     // Decide which hash functions to use based on user input
     bool useHash1 = std::find(args.begin(), args.end(), 1) != args.end();
@@ -52,7 +56,7 @@ int main() {
     // Continuously read URLs from the user until an exit condition is met
     while (true) {
         std::vector<std::string> urls;  // Declare the vector to store URLs
-        InputHandler::readURLs(size, args, urls, bloomFilter);
+        URLsHandler::readURLs(size, args, urls, bloomFilter);
 
     return 0;
 }
