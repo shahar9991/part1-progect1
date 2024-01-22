@@ -22,8 +22,6 @@ public:
 
     const std::unordered_map<int, HashFunction>& getHashFunctionMap() const;
 
-    void iterateOverTrueHashFunctions() const;
-
     const std::unordered_set<size_t>& getTrueKeysSet() const;
 };
 
