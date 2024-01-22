@@ -6,10 +6,9 @@
 
 class IsBlackListed : public IExecutable {
 private:
-    std::vector<bool> bitArray;
-    std::function<size_t(const std::string&)> hashFunction1;
-    std::function<size_t(const std::string&)> hashFunction2;
+    BloomFilter* BloomFilter;
 
 public:
-    void execute(const std::string& url){}
+    IsBlackListed(BloomFilter* BloomFilter);
+    void execute(const std::string& url){};
 };

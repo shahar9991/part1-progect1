@@ -7,12 +7,13 @@
 
 int main(){
     map<string, IExecutable*> commands; //create an array of commands to execute
-    InputHandler* inputHandler - new InputHandler;
+    InputHandler* inputHandler = new InputHandler;
+    
+    //initiate the Bloom Filter
+    inputHandler->getSizeAndArgs();
+    BloomFilter* bloomFilter = new BloomFilter(); //create the bloom filter
 
     //add executable commands to the commands list
-    IExecutable* CreateBloomFilter = new CreateBloomFilter();
-    commands["create bloom filter"] = CreateBloomFilter; //create the bloom filter
-
     IExecutable* AddURL = new AddURL();
     commands["add URL"] = AddURL; //add a new URL adress to the bloom filter, to be blacklisted.
 
@@ -24,7 +25,7 @@ int main(){
     flow.run();
 
     //delete all the objects we created on the heap
-    delete CreateBloomFilter;
+    delete bloomFilter;
     delete AddURL;
     delete IsBlackListed;
     for (int i = 0; i < arraySize; ++i) {

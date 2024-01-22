@@ -10,12 +10,13 @@ class Flow{
     public:
         Flow(InputHandler* inputHandler, map<string, IExecutable*> commands;) : inputHandler(inputHandler), commands(commands) {}
         void run(){ //run the program
+            //loop infinitely
             while (true) {
                 //InputHandler- get the input and make sure it is OK
                 //according to the input- understand which command needs to be executed
-                std::string task = InputHandler->handle_input();
+                std::string task = inputHandler->handle_input();
                 try {
-                    commands[task]->execute(); //try to execute the required task from the commands list.
+                    commands[task]->execute(bloomFilter); //try to execute the required task from the commands list.
                     }
                 catch(...){}
             }

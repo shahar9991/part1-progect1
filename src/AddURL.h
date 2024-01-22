@@ -6,10 +6,9 @@
 
 class AddURL : public IExecutable {
 private:
-    std::vector<bool> bitArray;
-    std::function<size_t(const std::string&)> hashFunction1;
-    std::function<size_t(const std::string&)> hashFunction2;
+    BloomFilter* bloomFilter;
 
 public:
-    void execute(){}
+    AddURL(BloomFilter* bloomFilter) : bloomFilter(bloomFilter){};
+    void execute(){};
 };
