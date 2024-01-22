@@ -1,8 +1,9 @@
 // URLsHandler.cpp
-#include "URLsHandler.h"
-#include "BloomFilter1.h"  // Include the BloomFilter header
+#include "URLsHandler1.h"
+#include "BloomFilter2.h"  // Include the BloomFilter header
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 void URLsHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter) {
     std::cout << "Processed URLs:\n";
@@ -28,6 +29,7 @@ void URLsHandler::processURLs(int size, const std::vector<int>& args, const std:
         } else {
             std::cout << "(Invalid URL format)\n";
         }
+        
     }
 }
 
