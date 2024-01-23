@@ -11,12 +11,13 @@ IsBlackListed::execute(const std::string& url){
         std::cout << "Checking URL: " << url << " at index " << index << std::endl;
 
         if (!bloomFilter.bitArray[index]) {
-            return false; // If any bit is false, the URL is not blacklisted
+            std::cout<<"false false"; // If any bit is false, the URL is not blacklisted
         }
-
         if (bloomFilter.falsePositiveDict->SearchUrlInDict(url)) {
-            foundInDict = true;
+            std::cout<<"true true";
+        }
+        else{
+            std::cout<<"true false"
         }
     }
-    return foundInDict; // Return whether the URL was found in the FalsePositiveDictionary
 }
