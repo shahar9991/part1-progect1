@@ -22,17 +22,15 @@ void URLsHandler::processURLs(int size, const std::vector<int>& args, const std:
     }
 }
 
+
 void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, map<string, IExecutable*> commands) {
     while (true) {
         std::cout << "Enter the URL(s) (space-separated): ";
         std::string input;
         std::getline(std::cin, input);
 
-        urls.clear();  // Clear the vector before reading new URLs
-
-        // Store the entire line as a single URL
-        urls.push_back(input);
-
+        urls.clear();  // Clear the vector before reading new URLs        
+        urls.push_back(input); // Store the entire line as a single URL
         processURLs(size, args, urls, bloomFilter, commands);
     }
 }

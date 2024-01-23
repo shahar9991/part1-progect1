@@ -1,6 +1,9 @@
 #include "ArgsHandler1.h"
 #include "URLsHandler1.h"
 #include "BloomFilter2.h"
+#include "IExecutable.h"
+#include "AddURL.h"
+#include "IsBlacklisted.h"
 #include "HashGenerator2.h"  // Include the HashGenerator header
 #include <iostream>
 #include <unordered_set>
