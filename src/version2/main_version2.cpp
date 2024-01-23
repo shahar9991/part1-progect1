@@ -44,17 +44,6 @@ int main() {
 
     ICommand* isBlackListedCommand = new IsBlacklisted(&bloomFilter);
     commands["2"] = isBlackListedCommand;
-
-    map<string, IExecutable*> commands; //create an array of commands to execute
-
-    //add executable commands to the commands list
-    IExecutable* AddURL = new AddURL(bloomFilter);
-    commands["1"] = AddURL; //add a new URL adress to the bloom filter, to be blacklisted.
-
-    IExecutable* IsBlackListed = new IsBlackListed(bloomFilter);
-    commands["2"] = IsBlackListed; //check if a given URL adress is in the bloom filter and is blacklisted.
-
-
     //loop forever
     while (true) {
         std::vector<std::string> urls;  // Declare the vector to store URLs
