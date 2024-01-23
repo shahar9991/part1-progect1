@@ -1,14 +1,8 @@
-#include "BloomFilter2.h"
-#include "FalsePositive.h"  // Include the FalsePositive header file
-
-BloomFilter::BloomFilter(size_t size, const std::vector<std::function<size_t(const std::string&)>>& hashFunctions)
-    : bitArray(size, false), hashFunctions(hashFunctions) {
-    falsePositiveDict = new FalsePositiveDictionary();  // Initialize the FalsePositiveDictionary
-}
-
-BloomFilter::~BloomFilter() {
-    delete falsePositiveDict;
-}
+#include "IsBlackListed.h"
+#include <vector>
+#include <functional>
+#include <iostream>
+#include <unordered_set>
 // Definition of BloomFilter functions
 void BloomFilter::isBlacklisted(const std::string& url) const {
     bool foundInDict = false;
@@ -30,17 +24,4 @@ void BloomFilter::isBlacklisted(const std::string& url) const {
 
     // Print the result
     std::cout  << (anyBitFalse ? "false " : "true ")<< (foundInDict ? "true " : "false") << std::endl;
-}
-
-
-void BloomFilter::addURL(const std::string& url) {
-    falsePositiveDict->AddUrlToDict(url);
-    for (const auto& hashFunction : hashFunctions) {
-        size_t index = hashFunction(url) % bitArray.size();
-
-        // Only set the bit to true if it is not already true
-        if (!bitArray[index]) {
-            bitArray[index] = true;
-        }
-    }
 }

@@ -3,6 +3,7 @@
 #include <sstream>
 #include <algorithm>
 
+
 std::vector<int> ArgsHandler::PrintRealArgs(int size, const std::vector<int>& args) {
     std::vector<int> distinctArgs;
     for (const auto& arg : args) {
@@ -39,7 +40,6 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args) {
         ss >> size;
 
         if (size <= 0) {
-            std::cout << "Invalid size. Please enter a valid input.\n";
             continue;
         }
 
@@ -50,7 +50,6 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args) {
             if (value == 1 || value == 2) {
                 args.push_back(value);
             } else {
-                std::cout << "Invalid argument. Please enter valid arguments.\n";
                 args.clear();
                 break;
             }
@@ -62,3 +61,4 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args) {
         }
     }
 }
+
