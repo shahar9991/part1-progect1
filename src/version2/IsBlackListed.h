@@ -1,11 +1,18 @@
-#include <vector>
-#include <functional>
-#include <iostream>
-#include <unordered_set>
+// IsBlacklisted.h
+#ifndef ISBLACKLISTED_H
+#define ISBLACKLISTED_H
 
-class IsBlackListed : public IExecutable {
-    private:
-        BloomFilter2* bloomFilter;
-    public:
-        void execute(const std::string& url){}
-}
+#include "ICommand.h"
+#include "BloomFilter2.h"
+#include <string>
+
+class IsBlacklisted : public ICommand {
+public:
+    IsBlacklisted(BloomFilter* filter);
+    void execute(const std::string& url) override;
+
+private:
+    BloomFilter* bloomFilter;
+};
+
+#endif // ISBLACKLISTED_H

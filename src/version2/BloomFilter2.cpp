@@ -9,32 +9,34 @@ BloomFilter::BloomFilter(size_t size, const std::vector<std::function<size_t(con
 BloomFilter::~BloomFilter() {
     delete falsePositiveDict;
 }
-
 // Definition of BloomFilter functions
-// Definition of BloomFilter functions
-bool BloomFilter::isBlacklisted(const std::string& url) const {
+void BloomFilter::isBlacklisted(const std::string& url) const {
     bool foundInDict = false;
+
+    // Check if the URL is present in the FalsePositiveDictionary
+    if (falsePositiveDict->SearchUrlInDict(url)) {
+        foundInDict = true;
+    }
+
+    // Iterate over hash functions and check bitArray
+    bool anyBitFalse = false;
     for (const auto& hashFunction : hashFunctions) {
         size_t index = hashFunction(url) % bitArray.size();
-        std::cout << "Checking URL: " << url << " at index " << index << std::endl;
-
         if (!bitArray[index]) {
-            return false; // If any bit is false, the URL is not blacklisted
-        }
-
-        if (falsePositiveDict->SearchUrlInDict(url)) {
-            foundInDict = true;
+            anyBitFalse = true; // If any bit is false, set anyBitFalse to true
+            break;  // Exit the loop if a false bit is found
         }
     }
-    return foundInDict; // Return whether the URL was found in the FalsePositiveDictionary
+
+    // Print the result
+    std::cout  << (anyBitFalse ? "false " : "true ")<< (foundInDict ? "true " : "false") << std::endl;
 }
+
 
 void BloomFilter::addURL(const std::string& url) {
     falsePositiveDict->AddUrlToDict(url);
-    falsePositiveDict->DisplayAllUrls();
     for (const auto& hashFunction : hashFunctions) {
         size_t index = hashFunction(url) % bitArray.size();
-        std::cout << "Adding URL: " << url << " at index " << index << std::endl;
 
         // Only set the bit to true if it is not already true
         if (!bitArray[index]) {

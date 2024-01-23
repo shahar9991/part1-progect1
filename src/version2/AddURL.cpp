@@ -1,18 +1,10 @@
-#include <vector>
-#include <functional>
-#include <iostream>
-#include <unordered_set>
+// AddURL.cpp
+#include "AddURL.h"
+#include "BloomFilter2.h"
 
-AddURL :: execute(const std::string& url) {
-    bloomFilter.falsePositiveDict->AddUrlToDict(url);
-    bloomFilter.falsePositiveDict->DisplayAllUrls();
-    for (const auto& hashFunction : hashFunctions) {
-        size_t index = hashFunction(url) % bloomFilter.bitArray.size();
-        std::cout << "Adding URL: " << url << " at index " << index << std::endl;
+AddURL::AddURL(BloomFilter* filter) : bloomFilter(filter) {}
 
-        // Only set the bit to true if it is not already true
-        if (!bloomFilter.bitArray[index]) {
-            bloomFilter.bitArray[index] = true;
-        }
-    }
+void AddURL::execute(const std::string& url) {
+    // Implement the execute function
+    bloomFilter->addURL(url);
 }

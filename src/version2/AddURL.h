@@ -1,12 +1,19 @@
-#include <vector>
-#include <functional>
-#include <iostream>
-#include <unordered_set>
+// AddURL.h
+#ifndef ADDURL_H
+#define ADDURL_H
 
-class AddURL : public IExecutable {
-    private:
-        BloomFilter2* bloomFilter;
-    public:
-        AddURL(BloomFilter2* bloomFilter)
-        void execute(const std::string& url){}
-}
+#include "ICommand.h"
+#include "BloomFilter2.h"
+#include <string>
+
+class AddURL : public ICommand {
+public:
+    AddURL(BloomFilter* filter);
+    void execute(const std::string& url) override;
+
+private:
+    BloomFilter* bloomFilter;
+};
+
+#endif // ADDURL_H
+

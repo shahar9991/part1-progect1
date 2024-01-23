@@ -4,9 +4,9 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <map>
 
-void URLsHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter, map<string, IExecutable*> commands) {
-    std::cout << "Processed URLs:\n";
+void URLsHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands) {
     for (const auto& url : urls) {
         std::cout << url << "\n";
 
@@ -16,15 +16,30 @@ void URLsHandler::processURLs(int size, const std::vector<int>& args, const std:
         int urlNumber = url[0] - '0';
         std::string restOfURL = url.substr(1);
         try {
-            commands[urlNumber]->execute(restOfURL); //try to execute the required task from the commands list.
+             std::string urlKey = std::to_string(urlNumber);
+            commands[urlKey]->execute(restOfURL); //try to execute the required task from the commands list.
         }
         catch(...){}
     }
+    // for (const auto& url : urls) {
+    //     // Extract the URL number (1 or 2) from the string
+    //     int urlNumber = url[0] - '0';
+
+    //     if (urlNumber == 1) {
+    //         // Add the URL to the Bloom filter (excluding the first digit)
+    //         std::string restOfURL = url.substr(1);
+    //         bloomFilter.addURL(restOfURL);
+    //     } else if (urlNumber == 2) {
+    //         // Check if the URL (excluding the first digit) is blacklisted
+    //         std::string restOfURL = url.substr(1);
+    //         bloomFilter.isBlacklisted(restOfURL); 
+    //     } 
+    
+    // }
 }
 
-void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, map<string, IExecutable*> commands) {
+void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands) {
     while (true) {
-        std::cout << "Enter the URL(s) (space-separated): ";
         std::string input;
         std::getline(std::cin, input);
 
@@ -33,6 +48,7 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
         // Store the entire line as a single URL
         urls.push_back(input);
 
+        // processURLs(size, args, urls, bloomFilter);
         processURLs(size, args, urls, bloomFilter, commands);
     }
 }
