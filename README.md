@@ -12,5 +12,7 @@ We built the logical flow of the project (classes and functions) and when the co
 
 
 ### The Refactors We Did
-+ We implemented the command design pattern. 
++ We implemented the command design pattern. We created an interface called IExecutable which has a function "execute" and two classes that implement it: AddURL and IsBlacklisted. 
+these two classes have a bloom filter as a member, and this bloom filter object stores the data structure of the filter and the hash functions.
+
 + We implemented the SOLID principles.
