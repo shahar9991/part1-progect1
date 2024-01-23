@@ -12,5 +12,5 @@ We built the logical flow of the project (classes and functions) and when the co
 
 
 ### The Refactors We Did
-1. We implemented the command design pattern. 
-2. We implemented the SOLID principles.
++ We implemented the command design pattern. 
++ We implemented the SOLID principles.
