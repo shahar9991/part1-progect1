@@ -22,9 +22,9 @@ void URLsHandler::processURLs(int size, const std::vector<int>& args, const std:
             // Check if the URL (excluding the first digit) is blacklisted
             std::string restOfURL = url.substr(1);
             if (bloomFilter.isBlacklisted(restOfURL)) {
-                std::cout << "(Blacklisted)\n";
+                std::cout << "(true true)\n";
             } else {
-                std::cout << "(Not Blacklisted)\n";
+                std::cout << "(true false)\n";
             }
         } else {
             std::cout << "(Invalid URL format)\n";
