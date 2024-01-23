@@ -16,4 +16,8 @@ We built the logical flow of the project (classes and functions) and when the co
 these two classes have a bloom filter as a member, and this bloom filter object stores the data structure of the filter and the hash functions.
 With this design pattern we can execute the wanted command easily.
 
-+ **We implemented the SOLID principles:**
++ **We implemented a few principles:**
+  + **Single responsibility principle-** we divided the code to many classes and functions, each is short and has one clear responsibility.
+  + **Open/Closed principle-** by dividing the code to different classes and functions, we can easily add extentions by adding more functions. Implementing the command design pattern also implements this principle.
+  + **Interface Segregation Principle-** our IExecutable interface only has one function.
+  
