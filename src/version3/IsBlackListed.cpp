@@ -4,7 +4,7 @@
 #include <iostream>
 #include <unordered_set>
 
-IsBlackListed::execute(const std::string& url){
+void IsBlackListed::execute(const std::string& url){
     bool foundInDict = false;
     for (const auto& hashFunction : hashFunctions) {
         size_t index = hashFunction(url) % bloomFilter.bitArray.size();

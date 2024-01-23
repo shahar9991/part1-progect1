@@ -3,7 +3,7 @@
 #include <iostream>
 #include <unordered_set>
 
-AddURL :: execute(const std::string& url) {
+void AddURL::execute(const std::string& url) {
     bloomFilter.falsePositiveDict->AddUrlToDict(url);
     bloomFilter.falsePositiveDict->DisplayAllUrls();
     for (const auto& hashFunction : hashFunctions) {
