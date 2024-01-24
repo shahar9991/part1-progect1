@@ -1,21 +1,19 @@
 #include "ArgsHandler1.h"
 #include "URLsHandler1.h"
 #include "BloomFilter2.h"
+#include "IExecutable.h"
+#include "AddURL.h"
+#include "IsBlacklisted.h"
 #include "HashGenerator2.h"  // Include the HashGenerator header
 #include <iostream>
 #include <unordered_set>
 #include <functional>
 #include <vector>
-#include <map>
-#include "ICommand.h"
-#include "AddURL.h"
-#include "IsBlackListed.h"
 
 int main() {
-    
-     HashGenerator2 hashGenerator;
-     int size;
-     std::vector<int> args;
+    HashGenerator2 hashGenerator;
+    int size;
+    std::vector<int> args; //arguments vector
 
     ArgsHandler argsHandler;
     argsHandler.readSizeAndArgs(size,args); //get the arguments from the user
@@ -34,27 +32,25 @@ int main() {
         }
     }                   
 
-     // Create a BloomFilter instance with hash functions
-     BloomFilter bloomFilter(size, hashFunctions);
-     std::map<std::string, ICommand*> commands;
+    // Create a BloomFilter instance with hash functions
+    BloomFilter bloomFilter(size, hashFunctions);
 
-    // Add executable commands to the commands list
-    ICommand* addURLCommand = new AddURL(&bloomFilter);
-    commands["1"] = addURLCommand;
+    map<string, IExecutable*> commands; //create an array of commands to execute
 
-    ICommand* isBlackListedCommand = new IsBlacklisted(&bloomFilter);
-    commands["2"] = isBlackListedCommand;
+    //add executable commands to the commands list
+    IExecutable* AddURL = new AddURL(bloomFilter);
+    commands["1"] = AddURL; //add a new URL adress to the bloom filter, to be blacklisted.
+
+    IExecutable* IsBlackListed = new IsBlackListed(bloomFilter);
+    commands["2"] = IsBlackListed; //check if a given URL adress is in the bloom filter and is blacklisted.
+
+
     //loop forever
     while (true) {
         std::vector<std::string> urls;  // Declare the vector to store URLs
-         URLsHandler urlsHandler;
-        urlsHandler.readURLs(size, args, urls, bloomFilter,commands);
-     }
-
-     delete addURLCommand;
-     delete isBlackListedCommand;
+        URLsHandler urlsHandler;
+        urlsHandler.readURLs(size, args, urls, bloomFilter, commands); //handle the urls
+    }
 
     return 0;
 }
-
-
