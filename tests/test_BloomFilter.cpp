@@ -1,6 +1,6 @@
 // test_BloomFilter.cpp
 #include <gtest/gtest.h>
-#include "../src/version2/BloomFilter.cpp"
+#include "BloomFilter.cpp"
 
 TEST(BloomFilterTest, AddAndCheckSingleURL) {
     // Create a BloomFilter instance with a single hash function

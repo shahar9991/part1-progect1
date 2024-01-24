@@ -11,11 +11,11 @@ https://github.com/google/googletest/archive/03597a01ee50ed
 )
 enable_testing()
 set(SOURCE_FILES
-src/version2/HashGenerator2.cpp # this is where the code we want to test
-src/version2/FalsePositive.cpp # this is where the code we want to test
-src/version2/BloomFilter2.cpp # this is where the code we want to test
-src/version2/URLsHandler1.cpp # this is where the code we want to test
-src/version2/ArgsHandler1.cpp # this is where the code we want to test
+src/HashGenerator2.cpp # this is where the code we want to test
+src/FalsePositive.cpp # this is where the code we want to test
+src/BloomFilter2.cpp # this is where the code we want to test
+src/URLsHandler1.cpp # this is where the code we want to test
+src/ArgsHandler1.cpp # this is where the code we want to test
 
 )
 set(TEST_FILES

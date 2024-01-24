@@ -1,6 +1,6 @@
 // hash_generator_test.cpp
 #include <gtest/gtest.h>
-#include "../src/version2/HashGenerator.cpp" // Include the code to be tested
+#include "HashGenerator.cpp" // Include the code to be tested
 
 // Test for the scenario when only HashFunction1 is used
 TEST(HashGenerator2Test, AddTrueKeysToSet_HashFunction1) {

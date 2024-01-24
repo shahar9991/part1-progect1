@@ -1,6 +1,6 @@
 // false_positive_test.cpp
 #include <gtest/gtest.h>
-#include "../src/version2/FalsePositive.cpp"
+#include "FalsePositive.cpp"
 
 TEST(FalsePositiveDictionaryTest, AddSingleUrl) {
     FalsePositiveDictionary dictionary;

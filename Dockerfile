@@ -1,9 +1,12 @@
 FROM gcc:latest
 
-WORKDIR usr/src/part1-progect1/src/version2
+WORKDIR usr/src/ex1
 
 COPY ./src/ .
 
-RUN g++ -o part1-progect1 ./ArgssHandler1.cpp ./FalsePositive.cpp ./HashGenerator2.cpp  ./Bloom_Filter2.cpp ./URLsHandler1.cpp ./main_version2.cpp
+RUN g++ -o ex1 ./main.cpp AddURL.cpp ArgsHandler1.cpp BloomFilter2.cpp FalsePositive.cpp Flow.cpp HashGenerator2.cpp ICommand.cpp URLsHandler1.cpp
+
+
+CMD ["./ex1"]
 
 

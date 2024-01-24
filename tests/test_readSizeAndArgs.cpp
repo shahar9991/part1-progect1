@@ -1,6 +1,6 @@
 
 #include <gtest/gtest.h>
-#include "../src/version2/ArgsHandler.cpp"
+#include "ArgsHandler.cpp"
 
 
 TEST(CalcTests, PrintRealArgs_Duplicate) {
