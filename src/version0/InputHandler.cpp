@@ -1,26 +1,21 @@
 // InputHandler.cpp
 #include "InputHandler.h"
-#include "FalsePositive.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
 
-string InputHandler::handle_input(){
-    //this function handles the input. it calls the rest of the functions in the class.
-    //this function returns the command that needs to be done according to the input.
-    //options are: 
-    int size;
-    std::vector<int> args;
+// string InputHandler::handle_input(){
+//     //this function handles the input. it calls the rest of the functions in the class.
+//     //this function returns the command that needs to be done according to the input.
+//     //options are: 
+//     int size;
+//     std::vector<int> args;
 
-    InputHandler::readSizeAndArgs(size, args);
+//     InputHandler::readSizeAndArgs(size, args);
     
 
 
-}
-
-
-
-
+// }
 
 void InputHandler::printRealArgs(int size, const std::vector<int>& args) {
     std::vector<int> distinctArgs;
@@ -39,8 +34,6 @@ void InputHandler::printRealArgs(int size, const std::vector<int>& args) {
 
 void InputHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter) {
     std::cout << "Processed URLs:\n";
-    // Create an instance of URLDictionary
-    FalsePositiveDictionary CheckDict;
     int i=0;
     std::string data = "";
     for (const auto& url : urls) {
@@ -54,14 +47,13 @@ void InputHandler::processURLs(int size, const std::vector<int>& args, const std
             std::string restOfURL = url.substr(1);
             bloomFilter.addURL(restOfURL);
             data += "data" + std::to_string(i);
-            CheckDict.addURL(restOfURL,data);
+            // CheckDict.addURL(restOfURL,data);
             i=i+1;
             std::cout << "(Added to Bloom Filter)\n";
         } else if (urlNumber == 2) {
             // Check if the URL (excluding the first digit) is blacklisted
             std::string restOfURL = url.substr(1);
             if (bloomFilter.isBlacklisted(restOfURL)) {
-                CheckDict.searchURL(restOfURL);
             } else {
                 std::cout << "(Not Blacklisted)\n";
             }

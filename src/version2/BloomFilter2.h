@@ -17,7 +17,7 @@ public:
     void addURL(const std::string& url);
 
     void isBlacklisted(const std::string& url) const;
-    
+
     ~BloomFilter();  // Declare the destructor
 
 private:
