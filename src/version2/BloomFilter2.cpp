@@ -27,7 +27,7 @@ void BloomFilter::isBlacklisted(const std::string& url) const {
     }
 
     // Print the result
-    std::cout << (anyBitFalse ? "false " : "true ") << (foundInDict ? "true " : "false") << std::endl;
+    std::cout << (anyBitFalse ? "false " : "true ") << (foundInDict ? "true" : "false") << std::endl;
 }
 
 

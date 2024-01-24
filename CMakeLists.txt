@@ -11,11 +11,17 @@ https://github.com/google/googletest/archive/03597a01ee50ed
 )
 enable_testing()
 set(SOURCE_FILES
-src/bloom_test.cpp # this is where the code we want to test
+src/version2/HashGenerator2.cpp # this is where the code we want to test
+src/version2/FalsePositive.cpp # this is where the code we want to test
+src/version2/BloomFilter2.cpp
+src/version2/URLsHandler1.cpp
 )
 set(TEST_FILES
 tests/test_main.cpp # this is the main for tests
-tests/falsepositive_test.cpp # this file contain the tests
+tests/test_hash.cpp # this file contain the tests
+tests/test_FalsePositive.cpp # this file contain the tests
+tests/test_BloomFilter.cpp # this file contain the tests
+tests/test_URLsHandler.cpp # this file contain the tests
 )
 add_executable(CalcTests ${TEST_FILES})
 # Link Google Test to the test executable
