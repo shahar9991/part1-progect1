@@ -15,7 +15,7 @@ We built the logical flow of the project (classes and functions) and when the co
 
 
 ### The Refactors We Did
-**We refactored the hash functions:**
++ **We refactored the hash functions:**
 In the initial version (version 0) of our code, we had a naive implementation of hash functions that were tightly coupled with the implementation of the Bloom filter. This coupling meant that any changes or additions to the hash functions were directly tied to the Bloom filter, limiting the flexibility and maintainability of our code.
 
 In version 1, we made a significant improvement by separating these concerns into two distinct classes: one for hash functions and another for the Bloom filter. This separation allows us to decouple the hash functions from the specific implementation details of the Bloom filter.
