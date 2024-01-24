@@ -15,24 +15,9 @@ std::vector<int> ArgsHandler::PrintRealArgs(int size, const std::vector<int>& ar
     return distinctArgs;
 }
 
-// void ArgsHandler::printRealArgs(int size, const std::vector<int>& args) {
-//     std::vector<int> distinctArgs;
-//     for (const auto& arg : args) {
-//         if (std::find(distinctArgs.begin(), distinctArgs.end(), arg) == distinctArgs.end()) {
-//             distinctArgs.push_back(arg);
-//         }
-//     }
-
-//     std::cout << "Real Args: " << size << " ";
-//     for (const auto& arg : distinctArgs) {
-//         std::cout << arg << " ";
-//     }
-//     std::cout << "\n";
-// }
 
 void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args) {
     while (true) {
-        std::cout << "Enter the size and arguments (space-separated): ";
         std::string input;
         std::getline(std::cin, input);
 
