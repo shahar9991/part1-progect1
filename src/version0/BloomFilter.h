@@ -10,7 +10,7 @@ class BloomFilter {
 public:
     BloomFilter(size_t size, std::function<size_t(const std::string&)> hash1, std::function<size_t(const std::string&)> hash2 = nullptr);
     
-    void addURL(const std::string& url);
+    bool addURL(const std::string& url);
     bool isBlacklisted(const std::string& url) const;
 
 private:

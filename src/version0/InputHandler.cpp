@@ -1,5 +1,6 @@
 // InputHandler.cpp
 #include "InputHandler.h"
+#include "FalsePositive.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -7,12 +8,12 @@
 // string InputHandler::handle_input(){
 //     //this function handles the input. it calls the rest of the functions in the class.
 //     //this function returns the command that needs to be done according to the input.
-//     //options are: 
+//     //options are:
 //     int size;
 //     std::vector<int> args;
 
 //     InputHandler::readSizeAndArgs(size, args);
-    
+
 
 
 // }
@@ -120,5 +121,4 @@ void InputHandler::readURLs(int size, const std::vector<int>& args, std::vector<
         processURLs(size, args, urls, bloomFilter);
     }
 }
-
 
