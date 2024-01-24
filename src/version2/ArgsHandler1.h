@@ -11,7 +11,8 @@ public:
     ArgsHandler() = default;
 
     // void printRealArgs(int size, const std::vector<int>& args);
-    void readSizeAndArgs(int& size, std::vector<int>& args);
+   // void readSizeAndArgs(int& size, std::vector<int>& args);
+    void readSizeAndArgs(int& size, std::vector<int>& args, std::istream& input);
     std::vector<int> PrintRealArgs(int size, const std::vector<int>& args);
 };
 
