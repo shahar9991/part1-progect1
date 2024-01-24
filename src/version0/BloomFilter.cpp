@@ -7,7 +7,7 @@
 BloomFilter::BloomFilter(size_t size, std::function<size_t(const std::string&)> hash1, std::function<size_t(const std::string&)> hash2)
     : bitArray(size, false), hashFunction1(hash1), hashFunction2(hash2) {}
 
-void BloomFilter::addURL(const std::string& url) {
+bool BloomFilter::addURL(const std::string& url) {
     // Check if both hash functions are provided
     if (hashFunction1 && hashFunction2) {
         size_t index1 = hashFunction1(url) % bitArray.size();
@@ -23,6 +23,7 @@ void BloomFilter::addURL(const std::string& url) {
         if (!bitArray[index2]) {
             bitArray[index2] = true;
         }
+        return bitArray[index1] && bitArray[index2];
     } else if (hashFunction1) { // Use only the first hash function
         size_t index1 = hashFunction1(url) % bitArray.size();
 
@@ -32,6 +33,7 @@ void BloomFilter::addURL(const std::string& url) {
         if (!bitArray[index1]) {
             bitArray[index1] = true;
         }
+        return bitArray[index1];
     } else if (hashFunction2) { // Use only the second hash function
         size_t index2 = hashFunction2(url) % bitArray.size();
 
@@ -41,7 +43,9 @@ void BloomFilter::addURL(const std::string& url) {
         if (!bitArray[index2]) {
             bitArray[index2] = true;
         }
+        return bitArray[index2];
     }
+    return false;
 }
 
 bool BloomFilter::isBlacklisted(const std::string& url) const {
