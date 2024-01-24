@@ -1,6 +1,6 @@
 // test_BloomFilter.cpp
 #include <gtest/gtest.h>
-#include "../src/version0/BloomFilter.h"
+#include "../src/version0/BloomFilter.cpp"
 
 //add url, then check if blacklisted is indeed equal to add
 //for function isBlacklisted:
