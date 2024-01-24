@@ -1,6 +1,6 @@
 // AddURL.cpp
 #include "AddURL.h"
-#include "BloomFilter2.h"
+#include "BloomFilter.h"
 
 AddURL::AddURL(BloomFilter* filter) : bloomFilter(filter) {}
 

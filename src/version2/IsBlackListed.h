@@ -3,7 +3,7 @@
 #define ISBLACKLISTED_H
 
 #include "ICommand.h"
-#include "BloomFilter2.h"
+#include "BloomFilter.h"
 #include <string>
 
 class IsBlacklisted : public ICommand {

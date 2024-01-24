@@ -1,8 +1,8 @@
 #include "Flow.h"
-#include "ArgsHandler1.h"
-#include "URLsHandler1.h"
-#include "BloomFilter2.h"
-#include "HashGenerator2.h"  // Include the HashGenerator header
+#include "ArgsHandler.h"
+#include "URLsHandler.h"
+#include "BloomFilter.h"
+#include "HashGenerator.h"  // Include the HashGenerator header
 #include <iostream>
 #include <unordered_set>
 #include <functional>

@@ -1,6 +1,6 @@
 // IsBlackListed.cpp
 #include "IsBlackListed.h"
-#include "BloomFilter2.h"
+#include "BloomFilter.h"
 
 IsBlacklisted::IsBlacklisted(BloomFilter* filter) : bloomFilter(filter) {}
 

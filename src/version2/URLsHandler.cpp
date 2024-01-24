@@ -1,6 +1,6 @@
 // URLsHandler.cpp
-#include "URLsHandler1.h"
-#include "BloomFilter2.h"  // Include the BloomFilter header
+#include "URLsHandler.h"
+#include "BloomFilter.h"  // Include the BloomFilter header
 #include <iostream>
 #include <sstream>
 #include <vector>

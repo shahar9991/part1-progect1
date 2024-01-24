@@ -1,4 +1,4 @@
-#include "BloomFilter2.h"
+#include "BloomFilter.h"
 #include "FalsePositive.h"  // Include the FalsePositive header file
 
 BloomFilter::BloomFilter(size_t size, const std::vector<std::function<size_t(const std::string&)>>& hashFunctions)

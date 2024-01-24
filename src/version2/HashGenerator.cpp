@@ -3,7 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <functional>
-#include "HashGenerator2.h"
+#include "HashGenerator.h"
 
 HashGenerator2::HashGenerator2() {
     // Initialize hash functions and store them in the map

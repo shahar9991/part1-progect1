@@ -1,7 +1,7 @@
 
-// BloomFilter2.h
-#ifndef BLOOM_FILTER2_H
-#define BLOOM_FILTER2_H
+// BloomFilter.h
+#ifndef BLOOM_FILTER_H
+#define BLOOM_FILTER_H
 
 #include <vector>
 #include <functional>

@@ -1,119 +1,63 @@
-//
-// Created by user on 24/01/2024.
-//
-//
-// Created by user on 24/01/2024.
-//
+
 #include <gtest/gtest.h>
-#include "../src/version2/ArgsHandler1.cpp"
-// test_ReadSizeAndArgs.cpp
+#include "../src/version2/ArgsHandler.cpp"
 
-TEST(ArgsHandlerTest, ReadSizeAndArgs) {
+
+TEST(CalcTests, PrintRealArgs_Duplicate) {
+
 ArgsHandler argsHandler;
 
-// Simulate user input using a stringstream
-std::istringstream input("3 1 2");
+// Test with duplicate values
+std::vector<int> input = {1, 2, 1, 1, 2, 2, 2};
+std::vector<int> expected = {1, 2};
 
-int size;
-std::vector<int> args;
-
-argsHandler.readSizeAndArgs(size, args, input);
-
-// Check if the function correctly reads size and arguments
-EXPECT_EQ(size, 3);
-EXPECT_EQ(args.size(), 2);
-EXPECT_EQ(args[0], 1);
-EXPECT_EQ(args[1], 2);
+EXPECT_EQ(argsHandler.PrintRealArgs(8, input), expected);
 }
-TEST(ArgsHandlerTest, ReadSizeAndArgs_OneNumber) {
+TEST(CalcTests,  PrintRealArgs_NoDuplicate) {
+
+ArgsHandler argsHandler;
+// Test with no duplicate values
+std::vector<int> input = {1,2};
+std::vector<int> expected = {1, 2};
+
+EXPECT_EQ(argsHandler.PrintRealArgs(8, input), expected);
+
+}
+TEST(CalcTests,  PrintRealArgs_None) {
+
 ArgsHandler argsHandler;
 
-// Simulate user input with only one number using a stringstream
-std::istringstream input("4");
+// Test with an empty vector
+std::vector<int> input;
+std::vector<int> expected;
 
-int size;
-std::vector<int> args;
+EXPECT_EQ(argsHandler.PrintRealArgs(8, input), expected);
 
-argsHandler.readSizeAndArgs(size, args, input);
 
-// Check if the function correctly reads size and arguments
-// In this case, the size should be 4, and args should be empty
-EXPECT_EQ(size, 4);
-EXPECT_TRUE(args.empty());
 }
+// Test case for valid input
+TEST(test_ReadSizeAndArgs, ReadSizeAndArgs_ValidInput) {
+    ArgsHandler argsHandler;
+    int size;
+    std::vector<int> args;
 
-TEST(ArgsHandlerTest, ReadSizeAndArgs_OneNumber) {
-ArgsHandler argsHandler;
+    // Set up input stream with valid input
+    std::istringstream input("3 1 2");
 
-// Simulate user input with only one number using a stringstream
-std::istringstream input("4 3 3");
+    // Redirect cin to the input stream
+    std::streambuf* originalCin = std::cin.rdbuf(input.rdbuf());
 
-int size;
-std::vector<int> args;
+    argsHandler.readSizeAndArgs(size, args);
 
-argsHandler.readSizeAndArgs(size, args, input);
+    // Restore cin
+    std::cin.rdbuf(originalCin);
 
-// Check if the function correctly reads size and arguments
-// In this case, the size should be 4, and args should be empty
-EXPECT_EQ(size, 4);
-EXPECT_TRUE(args.empty());
+    // Verify that size and args are correctly set
+    ASSERT_EQ(size, 3);
+    ASSERT_EQ(args.size(), 2);
+    ASSERT_EQ(args[0], 1);
+    ASSERT_EQ(args[1], 2);
+
+    // Verify that the condition "if args is not empty" is true
+    ASSERT_TRUE(!args.empty());
 }
-TEST(ArgsHandlerTest, ReadSizeAndArgs_NoInput) {
-ArgsHandler argsHandler;
-
-// Simulate user entering nothing using an empty stringstream
-std::istringstream input("");
-
-int size;
-std::vector<int> args;
-
-argsHandler.readSizeAndArgs(size, args, input);
-
-// Check if the function handles no input gracefully
-// In this case, both size and args should be unchanged
-EXPECT_EQ(size, 0);
-EXPECT_TRUE(args.empty());
-}
-// Add more test cases as needed
-
-//
-//TEST(CalcTests, ReadSize_WrongSize) {
-//
-//ArgsHandler argsHandler;
-//
-//// Test with duplicate values
-//std::vector<int> input = {1, 2, 1, 1, 2, 2, 2};
-//std::vector<int> expected = {1, 2};
-//
-//EXPECT_EQ(argsHandler.PrintRealArgs(8, input), expected);
-//}
-//TEST(CalcTests,  ReadSize_RightSize) {
-//
-//ArgsHandler argsHandler;
-//// Test with no duplicate values
-//std::vector<int> input = {1,2};
-//std::vector<int> expected = {1, 2};
-//
-//EXPECT_EQ(argsHandler.PrintRealArgs(8, input), expected);
-//
-//}
-//TEST(CalcTests,  ReadArgs_RightArgs) {
-//
-//ArgsHandler argsHandler;
-//// Test with no duplicate values
-//std::vector<int> input = {1,2};
-//std::vector<int> expected = {1, 2};
-//
-//EXPECT_EQ(argsHandler.PrintRealArgs(8, input), expected);
-//
-//}
-//TEST(CalcTests,  ReadArgs_WrongArgs) {
-//
-//ArgsHandler argsHandler;
-//// Test with no duplicate values
-//std::vector<int> input = {1,2};
-//std::vector<int> expected = {1, 2};
-//
-//EXPECT_EQ(argsHandler.PrintRealArgs(8, input), expected);
-//
-//}

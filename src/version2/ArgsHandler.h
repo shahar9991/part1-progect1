@@ -1,5 +1,5 @@
-#ifndef ARGS_HANDLER1_H
-#define ARGS_HANDLER1_H
+#ifndef ARGS_HANDLER_H
+#define ARGS_HANDLER_H
 
 // ArgsHandler.h
 #pragma once
@@ -11,9 +11,9 @@ public:
     ArgsHandler() = default;
 
     // void printRealArgs(int size, const std::vector<int>& args);
-   // void readSizeAndArgs(int& size, std::vector<int>& args);
-    void readSizeAndArgs(int& size, std::vector<int>& args, std::istream& input);
+    void readSizeAndArgs(int& size, std::vector<int>& args);
+    // void readSizeAndArgs(int& size, std::vector<int>& args, std::istream& input);
     std::vector<int> PrintRealArgs(int size, const std::vector<int>& args);
 };
 
-#endif // ARGS_HANDLER1_H
+#endif // ARGS_HANDLER_H

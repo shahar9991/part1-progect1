@@ -3,7 +3,7 @@
 #define ADDURL_H
 
 #include "ICommand.h"
-#include "BloomFilter2.h"
+#include "BloomFilter.h"
 #include <string>
 
 class AddURL : public ICommand {
