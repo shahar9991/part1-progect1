@@ -20,7 +20,6 @@ void BloomFilter::isBlacklisted(const std::string& url) const {
     bool anyBitFalse = false;
     for (const auto& hashFunction : hashFunctions) {
         size_t index = hashFunction(url) % bitArray.size();
-        std::cout << "Checking URL: " << url << " at index " << index << std::endl;
         if (!bitArray[index]) {
             anyBitFalse = true; // If any bit is false, set anyBitFalse to true
             break;  // Exit the loop if a false bit is found
@@ -37,7 +36,6 @@ void BloomFilter::addURL(const std::string& url) {
     falsePositiveDict->AddUrlToDict(url);
     for (const auto& hashFunction : hashFunctions) {
         size_t index = hashFunction(url) % bitArray.size();
-        std::cout << "Adding URL: " << url << " at index " << index << std::endl; 
         // Only set the bit to true if it is not already true
         if (!bitArray[index]) {
             bitArray[index] = true;
