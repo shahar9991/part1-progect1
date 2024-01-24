@@ -1,3 +1,4 @@
+#include "Flow.h"
 #include "ArgsHandler1.h"
 #include "URLsHandler1.h"
 #include "BloomFilter2.h"
@@ -11,9 +12,9 @@
 #include "AddURL.h"
 #include "IsBlackListed.h"
 
-int main() {
-    
-     HashGenerator2 hashGenerator;
+
+void Flow::run() {
+    HashGenerator2 hashGenerator;
      int size;
      std::vector<int> args;
 
@@ -53,8 +54,4 @@ int main() {
 
      delete addURLCommand;
      delete isBlackListedCommand;
-
-    return 0;
 }
-
-
