@@ -15,8 +15,8 @@
 
 void Flow::run() {
     HashGenerator2 hashGenerator;
-     int size;
-     std::vector<int> args;
+    int size;
+    std::vector<int> args;
 
     ArgsHandler argsHandler;
     argsHandler.readSizeAndArgs(size,args); //get the arguments from the user
@@ -35,9 +35,9 @@ void Flow::run() {
         }
     }                   
 
-     // Create a BloomFilter instance with hash functions
-     BloomFilter bloomFilter(size, hashFunctions);
-     std::map<std::string, ICommand*> commands;
+    // Create a BloomFilter instance with hash functions
+    BloomFilter bloomFilter(size, hashFunctions);
+    std::map<std::string, ICommand*> commands;
 
     // Add executable commands to the commands list
     ICommand* addURLCommand = new AddURL(&bloomFilter);
