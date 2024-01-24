@@ -4,8 +4,7 @@ link to the repository: https://github.com/shahar9991/part1-progect1.git
 ## How To Compile And Run The Code:
 + **Prepare the files:** make sure you clone the repository locally with all the cpp and header files.
 + **Compile the code:** open the terminal and make sure the path is to the project's src directory.
-  run the command: **"g++ -o BloomFilterApp main.cpp AddURL.cpp ArgsHandler1.cpp BloomFilter2.cpp FalsePositive.cpp HashGenerator2.
-cpp ICommand.cpp IsBlackListed.cpp URLsHandler1.cpp Flow.cpp"**
+  run the command: **"g++ -o BloomFilterApp main.cpp Flow.cpp ArgsHandler.cpp URLsHandler.cpp HashGenerator.cpp BloomFilter.cpp FalsePositive.cpp ICommand.cpp AddURL.cpp IsBlackListed.cpp"**
 + **Run the code:** after compiling successfully, to run the code, in the terminal run the command: **"./BloomFilterApp"**
 
 ## Our Work Process:
