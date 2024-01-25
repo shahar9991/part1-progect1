@@ -5,6 +5,7 @@
 #include <functional>
 #include "HashGenerator.h"
 
+// this class generate hash functions according to the nubmers we are getting by user.
 HashGenerator2::HashGenerator2() {
     // Initialize hash functions and store them in the map
     hashFunctionMap[1] = [](const std::string& s) { return std::hash<std::string>()(s); };

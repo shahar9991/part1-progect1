@@ -11,7 +11,7 @@
 #include "ICommand.h"
 #include "AddURL.h"
 #include "IsBlackListed.h"
-
+// this class create all the needed instances and run the program
 
 void Flow::run() {
     HashGenerator2 hashGenerator;

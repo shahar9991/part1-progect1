@@ -7,6 +7,7 @@
 #include <map>
 #include <cctype>  // Include for std::isdigit
 
+//this class handle the urls adresses from the user first check if the url is leagal then excute the command. 
 void URLsHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands) {
     for (const auto& url : urls) {
         // Extract the URL number (1 or 2) from the string- it indicates the task to be done.
@@ -26,12 +27,20 @@ void URLsHandler::processURLs(int size, const std::vector<int>& args, const std:
     }
 }
 
+
 void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands) {
     while (true) {
         std::string input;
         std::getline(std::cin, input);
 
-        urls.clear();  // Clear the vector before reading new URLs
+        // Clear the vector before reading new URLs
+        urls.clear();
+
+        // Check if the input is empty
+        if (input.empty()) {
+            // If input is empty, continue to the next iteration to read new input
+            continue;
+        }
 
         // Check if the input is only a number with optional spaces after
         size_t pos = 0;
@@ -60,7 +69,6 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
         processURLs(size, args, urls, bloomFilter, commands);
     }
 }
-
 
 
 
