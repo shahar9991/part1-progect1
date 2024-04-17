@@ -38,6 +38,7 @@ void BloomFilter::addURL(const std::string& url) {
     falsePositiveDict->AddUrlToDict(url);
     for (const auto& hashFunction : hashFunctions) {
         size_t index = hashFunction(url) % bitArray.size();
+        std::cout << "Setting index " << index << " to true for URL: " << url << std::endl;
         // Only set the bit to true if it is not already true
         if (!bitArray[index]) {
             bitArray[index] = true;
