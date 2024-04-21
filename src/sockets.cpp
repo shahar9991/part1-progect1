@@ -10,7 +10,7 @@
 using namespace std;
 
 int get_client_socket() {
-    const int server_port = 54321;
+    const int server_port =54324;
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
         perror("error creating socket");
@@ -44,6 +44,7 @@ int get_client_socket() {
     }
 
     close(sock); // Close the server socket, as we only need the client socket
+    std::cout<<client_sock;
     return client_sock;
 }
 
@@ -51,24 +52,33 @@ void *handle_connection(void *client_socket_ptr) {
     int client_sock = *((int *)client_socket_ptr);
     char buffer[4096];
     int expected_data_len = sizeof(buffer);
-    int read_bytes = recv(client_sock, buffer, expected_data_len, 0);
-    if (read_bytes == 0) {
-        close(client_sock);
-    } else if (read_bytes < 0) {
-        perror("error reading from client");
-    } else {
-        cout << buffer;
+
+    while (true) {
+        int read_bytes = recv(client_sock, buffer, expected_data_len, 0);
+        if (read_bytes == 0) {
+            cout << "Client closed the connection\n";
+            break;
+        } else if (read_bytes < 0) {
+            perror("error reading from client");
+            break;
+        } else {
+            cout << "Read " << read_bytes << " bytes from client: " << buffer << endl;
+        }
+
+        int sent_bytes = send(client_sock, buffer, read_bytes, 0);
+        if (sent_bytes < 0) {
+            perror("error sending to client");
+            break;
+        }
     }
-    int sent_bytes = send(client_sock, buffer, read_bytes, 0);
-    if (sent_bytes < 0) {
-        perror("error sending to client");
-    }
+
     close(client_sock);
     pthread_exit(NULL);
 }
 
+
 int main() {
-    int client_sock = create_server_and_accept_client();
+    int client_sock = get_client_socket();
     if (client_sock < 0) {
         return 1; // Exit if an error occurred during socket creation or client acceptance
     }

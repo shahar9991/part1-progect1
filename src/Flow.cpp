@@ -14,6 +14,7 @@
 // this class create all the needed instances and run the program
 
 void Flow::run(int client_sock) {
+    std::cout<<"flow";
     HashGenerator2 hashGenerator;
     int size;
     std::vector<int> args;

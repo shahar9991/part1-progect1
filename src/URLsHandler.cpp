@@ -10,6 +10,7 @@
 
 //this class handle the urls adresses from the user first check if the url is leagal then excute the command. 
 void URLsHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands) {
+
     for (const auto& url : urls) {
         // Extract the URL number (1 or 2) from the string- it indicates the task to be done.
         //1 -> add the url to the bloom filter

@@ -36,9 +36,26 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args, int client_
        }
        // Append received data to the input string
        input.append(buffer, read_bytes);
+       std::istringstream iss(input);
 
-       std::istringstream ss(input);
-       ss >> size;
+       std::string token;
+       std::vector<std::string> tokens;
+
+       // Split the input by comma
+       while (std::getline(iss, token, ',')) {
+           tokens.push_back(token);
+       }
+
+       // Parse the first token as size and the rest as args
+       std::istringstream argsStream(tokens[0]);
+       argsStream >> size;
+       int argValue;
+       while (argsStream >> argValue) {
+           args.push_back(argValue);
+       }
+
+//       std::istringstream ss(input);
+//       ss >> size;
 
        // Check if the entered size is valid
        if (size <= 0) {
