@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 #include <cctype>  // Include for std::isdigit
+#include <unistd.h> //include for read. can we use it???
 
 //this class handle the urls adresses from the user first check if the url is leagal then excute the command. 
 void URLsHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands) {
@@ -28,14 +29,28 @@ void URLsHandler::processURLs(int size, const std::vector<int>& args, const std:
 }
 
 
-void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands) {
+void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands, int client_sock) {
     while (true) {
         std::string input;
         //todo socket
-        std::getline(std::cin, input);
+       // std::getline(std::cin, input);
 
         // Clear the vector before reading new URLs
         urls.clear();
+
+        char buffer[4096];
+        int read_bytes = read(client_sock, buffer, sizeof(buffer));
+        if (read_bytes < 0) {
+            // Error reading from socket
+            perror("Error reading from socket");
+            break;
+        } else if (read_bytes == 0) {
+            // Connection closed by client
+            std::cout << "Connection closed by client\n";
+            break;
+        }
+        // Append received data to the input string
+        input.append(buffer, read_bytes);
 
         // Check if the input is empty
         if (input.empty()) {
@@ -69,6 +84,8 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
 
         processURLs(size, args, urls, bloomFilter, commands);
     }
+    // Close the client socket after exiting the loop
+    close(client_sock);
 }
 
 

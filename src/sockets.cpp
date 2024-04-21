@@ -9,6 +9,44 @@
 
 using namespace std;
 
+int get_client_socket() {
+    const int server_port = 54321;
+    int sock = socket(AF_INET, SOCK_STREAM, 0);
+    if (sock < 0) {
+        perror("error creating socket");
+        return -1; // Return an error code
+    }
+
+    struct sockaddr_in sin;
+    memset(&sin, 0, sizeof(sin));
+    sin.sin_family = AF_INET;
+    sin.sin_addr.s_addr = INADDR_ANY;
+    sin.sin_port = htons(server_port);
+
+    if (bind(sock, (struct sockaddr*)&sin, sizeof(sin)) < 0) {
+        perror("error binding socket");
+        return -1; // Return an error code
+    }
+
+    if (listen(sock, 5) < 0) {
+        perror("error listening to a socket");
+        return -1; // Return an error code
+    }
+
+    struct sockaddr_in client_sin;
+    unsigned int addr_len = sizeof(client_sin);
+    int client_sock;
+    client_sock = accept(sock, (struct sockaddr*)&client_sin, &addr_len);
+    if (client_sock < 0) {
+        perror("error accepting client");
+        close(sock);
+        return -1; // Return an error code
+    }
+
+    close(sock); // Close the server socket, as we only need the client socket
+    return client_sock;
+}
+
 void *handle_connection(void *client_socket_ptr) {
     int client_sock = *((int *)client_socket_ptr);
     char buffer[4096];
@@ -30,48 +68,19 @@ void *handle_connection(void *client_socket_ptr) {
 }
 
 int main() {
-    const int server_port = 54321;
-    int sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock < 0) {
-        perror("error creating socket");
-        return 1;
+    int client_sock = create_server_and_accept_client();
+    if (client_sock < 0) {
+        return 1; // Exit if an error occurred during socket creation or client acceptance
     }
 
-    struct sockaddr_in sin;
-    memset(&sin, 0, sizeof(sin));
-    sin.sin_family = AF_INET;
-    sin.sin_addr.s_addr = INADDR_ANY;
-    sin.sin_port = htons(server_port);
-
-    if (bind(sock, (struct sockaddr*)&sin, sizeof(sin)) < 0) {
-        perror("error binding socket");
-        return 1;
+    // Now you have the client socket (client_sock), you can proceed with your logic
+    pthread_t tid;
+    if (pthread_create(&tid, NULL, handle_connection, (void *)&client_sock) != 0) {
+        perror("error creating thread");
+        close(client_sock);
+        return 1; // Exit if an error occurred during thread creation
     }
 
-    if (listen(sock, 5) < 0) {
-        perror("error listening to a socket");
-        return 1;
-    }
-
-    while (true) {
-        struct sockaddr_in client_sin;
-        unsigned int addr_len = sizeof(client_sin);
-        int client_sock;
-        client_sock = accept(sock, (struct sockaddr*)&client_sin, &addr_len);
-        if (client_sock < 0) {
-            perror("error accepting client");
-           // delete client_sock;
-            continue;
-        }
-
-        pthread_t tid;
-        if (pthread_create(&tid, NULL, handle_connection, (void *)&client_sock) != 0) {
-            perror("error creating thread");
-           //delete client_sock;
-            close(client_sock);
-        }
-    }
-
-    close(sock);
+    pthread_join(tid, NULL); // Wait for the thread to finish
     return 0;
 }

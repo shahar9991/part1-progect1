@@ -13,13 +13,13 @@
 #include "IsBlackListed.h"
 // this class create all the needed instances and run the program
 
-void Flow::run() {
+void Flow::run(int client_sock) {
     HashGenerator2 hashGenerator;
     int size;
     std::vector<int> args;
     //todo get from socket
     ArgsHandler argsHandler;
-    argsHandler.readSizeAndArgs(size,args); //get the arguments from the user
+    argsHandler.readSizeAndArgs(size,args, client_sock); // Pass the client socket descriptor to readSizeAndArgs
 
     // Get the set of true keys from HashGenerator
     args = argsHandler.PrintRealArgs(size,args);
@@ -45,12 +45,14 @@ void Flow::run() {
 
     ICommand* isBlackListedCommand = new IsBlacklisted(&bloomFilter);
     commands["2"] = isBlackListedCommand;
+
+    URLsHandler urlsHandler;
+
     //loop forever
     while (true) {
         std::vector<std::string> urls;  // Declare the vector to store URLs
-         URLsHandler urlsHandler;
          //todo socket
-        urlsHandler.readURLs(size, args, urls, bloomFilter,commands);
+        urlsHandler.readURLs(size, args, urls, bloomFilter, commands, client_sock);
      }
 
      delete addURLCommand;

@@ -13,6 +13,6 @@ public:
     URLsHandler() = default;
 
     void processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter, std::map<std::string, ICommand*>& commands);
-    void readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, std::map<std::string, ICommand*>& commands);
+    void readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, std::map<std::string, ICommand*>& commands, int client_sock);
 };
 #endif // URLS_HANDLER_H

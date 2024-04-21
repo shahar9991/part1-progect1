@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include <unistd.h> //include for read. can we use it???
 
 // Function to filter out duplicate values in the args vector
 // and return a vector containing distinct values
@@ -17,11 +18,25 @@ std::vector<int> ArgsHandler::PrintRealArgs(int size, const std::vector<int>& ar
 }
 
 //Function to read size and arguments from user input
-void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args) {
+void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args, int client_sock) {
    while (true) {
        std::string input;
        //todo get from socket
-       std::getline(std::cin, input);
+       //std::getline(std::cin, input);
+       char buffer[4096];
+       int read_bytes = read(client_sock, buffer, sizeof(buffer));
+       if (read_bytes < 0) {
+           // Error reading from socket
+           perror("Error reading from socket");
+           break;
+       } else if (read_bytes == 0) {
+           // Connection closed by client
+           std::cout << "Connection closed by client\n";
+           break;
+       }
+       // Append received data to the input string
+       input.append(buffer, read_bytes);
+
        std::istringstream ss(input);
        ss >> size;
 
