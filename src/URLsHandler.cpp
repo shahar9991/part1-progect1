@@ -31,6 +31,7 @@ void URLsHandler::processURLs(int size, const std::vector<int>& args, const std:
 void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands) {
     while (true) {
         std::string input;
+        //todo socket
         std::getline(std::cin, input);
 
         // Clear the vector before reading new URLs

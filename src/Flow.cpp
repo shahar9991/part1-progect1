@@ -17,7 +17,7 @@ void Flow::run() {
     HashGenerator2 hashGenerator;
     int size;
     std::vector<int> args;
-
+    //todo get from socket
     ArgsHandler argsHandler;
     argsHandler.readSizeAndArgs(size,args); //get the arguments from the user
 
@@ -49,6 +49,7 @@ void Flow::run() {
     while (true) {
         std::vector<std::string> urls;  // Declare the vector to store URLs
          URLsHandler urlsHandler;
+         //todo socket
         urlsHandler.readURLs(size, args, urls, bloomFilter,commands);
      }
 

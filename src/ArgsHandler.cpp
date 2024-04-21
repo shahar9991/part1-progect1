@@ -12,7 +12,7 @@ std::vector<int> ArgsHandler::PrintRealArgs(int size, const std::vector<int>& ar
             distinctArgs.push_back(arg);
         }
     }
-
+//todo response for client?
     return distinctArgs;
 }
 
@@ -20,6 +20,7 @@ std::vector<int> ArgsHandler::PrintRealArgs(int size, const std::vector<int>& ar
 void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args) {
    while (true) {
        std::string input;
+       //todo get from socket
        std::getline(std::cin, input);
        std::istringstream ss(input);
        ss >> size;

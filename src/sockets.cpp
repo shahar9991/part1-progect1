@@ -30,7 +30,7 @@ void *handle_connection(void *client_socket_ptr) {
 }
 
 int main() {
-    const int server_port = 5555;
+    const int server_port = 54321;
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
         perror("error creating socket");
@@ -56,19 +56,19 @@ int main() {
     while (true) {
         struct sockaddr_in client_sin;
         unsigned int addr_len = sizeof(client_sin);
-        int *client_sock = new int;
-        client_sock = accept(sock, (struct sockaddr)&client_sin, &addr_len);
-        if (*client_sock < 0) {
+        int client_sock;
+        client_sock = accept(sock, (struct sockaddr*)&client_sin, &addr_len);
+        if (client_sock < 0) {
             perror("error accepting client");
-            delete client_sock;
+           // delete client_sock;
             continue;
         }
 
         pthread_t tid;
-        if (pthread_create(&tid, NULL, handle_connection, (void *)client_sock) != 0) {
+        if (pthread_create(&tid, NULL, handle_connection, (void *)&client_sock) != 0) {
             perror("error creating thread");
-            delete client_sock;
-            close(*client_sock);
+           //delete client_sock;
+            close(client_sock);
         }
     }
 
