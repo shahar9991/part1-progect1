@@ -21,6 +21,8 @@ std::vector<int> ArgsHandler::PrintRealArgs(int size, const std::vector<int>& ar
 void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args, int client_sock) {
    while (true) {
        std::string input;
+       std::string data;
+       std::vector<std::string> separated;
        //todo get from socket
        //std::getline(std::cin, input);
        char buffer[4096];
@@ -35,37 +37,46 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args, int client_
            break;
        }
        // Append received data to the input string
-       input.append(buffer, read_bytes);
+       data.append(buffer, read_bytes);
 
-       std::istringstream iss(input);
+       std::istringstream iss(data);
        std::string token;
-       std::vector<std::string> tokens;
-
-       // Split the input by comma
        while (std::getline(iss, token, ',')) {
-           tokens.push_back(token);
+           separated.push_back(token);
+       }
+       // Check if the first part contains only digits
+       std::istringstream sizeStream(separated[0]);
+       sizeStream >> std::noskipws >> std::ws;
+       char c;
+       bool allDigits = true;
+
+       // Check if all characters are digits
+       while (sizeStream >> c) {
+           if (!std::isdigit(c)) {
+               allDigits = false;
+               break;
+           }
        }
 
-       // Parse the first token as size and the rest as args
-       std::istringstream argsStream(tokens[0]);
-       argsStream >> size;
-       int argValue;
-       while (argsStream >> argValue) {
-           args.push_back(argValue);
+       if (allDigits) {
+           input=separated[0];
+       } else{
+           return;
        }
 
-//       std::istringstream ss(input);
-//       ss >> size;
+       std::istringstream ss(input);
+       ss >> size;
 
        // Check if the entered size is valid
        if (size <= 0) {
            continue;
+
        }
 
        args.clear();
 
        int value;
-       while (argValue >> value) {
+       while (ss >> value) {
            // Check if the entered argument is valid (1 or 2)
            if (value == 1 || value == 2) {
                args.push_back(value);
