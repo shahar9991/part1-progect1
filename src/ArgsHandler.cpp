@@ -36,8 +36,8 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args, int client_
        }
        // Append received data to the input string
        input.append(buffer, read_bytes);
-       std::istringstream iss(input);
 
+       std::istringstream iss(input);
        std::string token;
        std::vector<std::string> tokens;
 
@@ -65,7 +65,7 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args, int client_
        args.clear();
 
        int value;
-       while (ss >> value) {
+       while (argValue >> value) {
            // Check if the entered argument is valid (1 or 2)
            if (value == 1 || value == 2) {
                args.push_back(value);

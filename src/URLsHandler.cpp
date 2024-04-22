@@ -32,7 +32,9 @@ void URLsHandler::processURLs(int size, const std::vector<int>& args, const std:
 
 void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands, int client_sock) {
     while (true) {
-        std::string input;
+       // std::string input;
+        std::string data;
+        std::vector<std::string> separated;
         //todo socket
        // std::getline(std::cin, input);
 
@@ -51,38 +53,62 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
             break;
         }
         // Append received data to the input string
-        input.append(buffer, read_bytes);
+      // input.append(buffer, read_bytes);
+        data.append(buffer, read_bytes);
 
-        // Check if the input is empty
-        if (input.empty()) {
-            // If input is empty, continue to the next iteration to read new input
-            continue;
+        std::istringstream iss(data);
+        std::string token;
+        while (std::getline(iss, token, ',')) {
+            separated.push_back(token);
         }
+        // Check if the first part contains only digits
+        std::istringstream sizeStream(separated[0]);
+        sizeStream >> std::noskipws >> std::ws;
+        char c;
+        bool allDigits = true;
 
-        // Check if the input is only a number with optional spaces after
-        size_t pos = 0;
-        while (pos < input.size() && std::isdigit(input[pos])) {
-            pos++;
-        }
-
-        if (pos > 0 && (pos == input.size() || (pos < input.size() && std::isspace(input[pos])))) {
-            // If only a command number is provided, check if there is an actual URL following it
-            while (pos < input.size() && std::isspace(input[pos])) {
-                pos++;
+        // Check if all characters are digits
+        while (sizeStream >> c) {
+            if (!std::isdigit(c)) {
+                allDigits = false;
+                break;
             }
-
-            if (pos < input.size()) {
-                // Actual URL follows the command number
-                urls.push_back(input);
-            } else {
-                // No URL provided after the command number, ask for the entire input again
-                continue;
-            }
-        } else {
-            // If the input is not only a number or is a valid command with a URL, process it
-            urls.push_back(input);
         }
 
+        if (allDigits) {
+            // If it contains only digits, erase the first element
+            separated.erase(separated.begin());
+            for (const auto& input : separated) {                    // Check if the input is empty
+                    if (input.empty()) {
+                        // If input is empty, continue to the next iteration to read new input
+                        continue;
+                    }
+
+                    // Check if the input is only a number with optional spaces after
+                    size_t pos = 0;
+                    while (pos < input.size() && std::isdigit(input[pos])) {
+                        pos++;
+                    }
+
+                    if (pos > 0 && (pos == input.size() || (pos < input.size() && std::isspace(input[pos])))) {
+                        // If only a command number is provided, check if there is an actual URL following it
+                        while (pos < input.size() && std::isspace(input[pos])) {
+                            pos++;
+                        }
+
+                        if (pos < input.size()) {
+                            // Actual URL follows the command number
+                            urls.push_back(input);
+                        } else {
+                            // No URL provided after the command number, ask for the entire input again
+                            continue;
+                        }
+                    } else {
+                        // If the input is not only a number or is a valid command with a URL, process it
+                        urls.push_back(input);
+                    }
+            }
+        //gets an array of urls and checks them according to the number attached
         processURLs(size, args, urls, bloomFilter, commands);
     }
     // Close the client socket after exiting the loop
