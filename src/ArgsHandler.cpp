@@ -16,36 +16,62 @@ std::vector<int> ArgsHandler::PrintRealArgs(int size, const std::vector<int>& ar
 //todo response for client?
     return distinctArgs;
 }
-
+// Trim whitespace from the beginning of a string
+std::string trim(const std::string& str) {
+    size_t start = str.find_first_not_of(" \t\r\n");
+    if (start == std::string::npos) {
+        return ""; // No non-whitespace characters
+    }
+    return str.substr(start);
+}
 //Function to read size and arguments from user input
-void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args, int client_sock) {
+void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args,const char* buffer) {
    while (true) {
        std::string input;
        std::string data;
        std::vector<std::string> separated;
        //todo get from socket
        //std::getline(std::cin, input);
-       char buffer[4096];
-       int read_bytes = read(client_sock, buffer, sizeof(buffer));
-       if (read_bytes < 0) {
-           // Error reading from socket
-           perror("Error reading from socket");
-           break;
-       } else if (read_bytes == 0) {
-           // Connection closed by client
-           std::cout << "Connection closed by client\n";
-           break;
-       }
+       //char buffer[4096];
+
+       //int read_bytes = read(client_sock, buffer, sizeof(buffer));
+
+//       if (read_bytes < 0) {
+//           // Error reading from socket
+//           perror("Error reading from socket");
+//           break;
+//
+//       } else if (read_bytes == 0) {
+//           // Connection closed by client
+//           std::cout << "Connection closed by client\n";
+//           break;
+//       }
+
        // Append received data to the input string
-       data.append(buffer, read_bytes);
+       data=buffer;
+
+//       for (int i = 0; i < read_bytes; ++i) {
+//           std::cout << buffer[i];
+//       }
+//       std::cout << std::endl;
+//       std::cout<<"data\n";
+//       std::cout<<data;
 
        std::istringstream iss(data);
        std::string token;
        while (std::getline(iss, token, ',')) {
            separated.push_back(token);
        }
+
        // Check if the first part contains only digits
-       std::istringstream sizeStream(separated[0]);
+       //std::istringstream sizeStream(separated[0]);
+       // Check if the first part contains only digits
+       std::string firstPart= separated[0];
+       firstPart.erase(remove_if(firstPart.begin(),
+                                                           firstPart.end(), isspace), firstPart.end());
+       //std::string firstPart = trim(separated[0]); // Trim whitespace
+       //std::cout << firstPart << std::endl;
+       std::istringstream sizeStream(firstPart);
        sizeStream >> std::noskipws >> std::ws;
        char c;
        bool allDigits = true;
@@ -57,15 +83,16 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args, int client_
                break;
            }
        }
-
        if (allDigits) {
            input=separated[0];
+           std::cout<<"size and args "<<input<<std::endl;
        } else{
            return;
        }
 
        std::istringstream ss(input);
        ss >> size;
+       std::cout << "size: " << size << std::endl;
 
        // Check if the entered size is valid
        if (size <= 0) {
@@ -86,14 +113,12 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args, int client_
                break;
            }
        }
-
        // If args is not empty, the input is valid, break from the loop
        if (!args.empty()) {
+
            PrintRealArgs(size, args);
            break;
        }
 
    }
-
-
 }

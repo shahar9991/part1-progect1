@@ -3,7 +3,7 @@
 
 class Flow {
 public:
-    static void run(int client_sock);
+    static void run(const char* buffer);
 
 };
 
