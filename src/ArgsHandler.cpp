@@ -87,12 +87,13 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args,const char* 
            input=separated[0];
            std::cout<<"size and args "<<input<<std::endl;
        } else{
-           return;
+           std::cout<<"go to url handler"<<std::endl;
+           return ;
        }
 
        std::istringstream ss(input);
        ss >> size;
-       std::cout << "size: " << size << std::endl;
+       std::cout << "size2: " << size << std::endl;
 
        // Check if the entered size is valid
        if (size <= 0) {

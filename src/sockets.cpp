@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <sys/socket.h>
 #include <stdio.h>
@@ -8,32 +7,49 @@
 #include <string.h>
 #include <pthread.h>
 #include "Flow.h"
+#include <cstring>
+
 
 using namespace std;
-
 void *handle_connection(void *client_socket_ptr) {
-    int client_sock = *((int *)client_socket_ptr);
+    int client_sock = *((int *) client_socket_ptr);
     char buffer[4096];
-    int expected_data_len = sizeof(buffer);
-    int read_bytes = recv(client_sock, buffer, expected_data_len, 0);
-    if (read_bytes == 0) {
-        close(client_sock);
-    } else if (read_bytes < 0) {
-        perror("error reading from client");
-    } else {
-        cout<<buffer<<std::endl;
-        Flow::run(buffer);
+    cout<<"before loop: "<<buffer<<endl;
+    while (true) {
+        cout<<"buffer full"<<buffer<<endl;
+        memset(buffer, 0, sizeof(buffer));
+        cout<<"before recieve\n";
+        int read_bytes = recv(client_sock, buffer, sizeof(buffer), 0);
+        cout<<"read bytes"<<read_bytes<<endl;
+        if (read_bytes == 0) {
+            // Client disconnected
+            break;
+        } else if (read_bytes < 0) {
+            perror("error reading from client");
+            break;
+        } else {
+            cout << "Received data: " << buffer << endl;
+
+            // Process the received data
+            std::string result;
+            char response_buffer[4096];
+            Flow::run(buffer, response_buffer);
+
+            // Send the response back to the client
+            int sent_bytes = send(client_sock, response_buffer, read_bytes, 0);
+            if (sent_bytes < 0) {
+                perror("error sending to client");
+                break;
+            }
+        }
     }
-    int sent_bytes = send(client_sock, buffer, read_bytes, 0);
-    if (sent_bytes < 0) {
-        perror("error sending to client");
-    }
+    cout<<"loop is out\n";
     close(client_sock);
     pthread_exit(NULL);
 }
 
 int main() {
-    const int server_port = 54322;
+    const int server_port = 54321;
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
         perror("error creating socket");
@@ -76,5 +92,5 @@ int main() {
     }
 
     close(sock);
-        return 0;
+    return 0;
 }

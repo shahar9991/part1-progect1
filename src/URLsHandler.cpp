@@ -8,30 +8,48 @@
 #include <cctype>  // Include for std::isdigit
 #include <unistd.h> //include for read. can we use it???
 #include <algorithm>
+#include <cstring>
 //this class handle the urls adresses from the user first check if the url is leagal then excute the command. 
-void URLsHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands) {
+void URLsHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands,std::string& result) {
 
     for (const auto& url : urls) {
         // Extract the URL number (1 or 2) from the string- it indicates the task to be done.
         //1 -> add the url to the bloom filter
         //2 -> check if the URL is in the bloom filter and is blacklisted
         int urlNumber = url[0] - '0';
+     //   std::cout<<"urls key: "<<urlNumber<<std::endl;
         std::string urlKey = std::to_string(urlNumber);
+
         std::string restOfURL = url.substr(1);
+        //std::cout<<"url number: "<<urlNumber<<std::endl;
         if (commands.find(urlKey) != commands.end()) {
+
             try {
-            
-            commands[urlKey]->execute(restOfURL); //try to execute the required task from the commands list.
+                // Execute the command and get the result
+                std::string commandResult = commands[urlKey]->execute(restOfURL);
+
+                // Append the result to the overall result string
+                result.append(commandResult);
+
+
+                // Add a delimiter between each result
+                result.append(",");
+
+
+                //commands[urlKey]->execute(restOfURL); //try to execute the required task from the commands list.
             }
             catch(...){}
         }
-       
+
+
     }
+
 }
 
 
-void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands,const char* buffer) {
-    while (true) {
+void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands,const char* buffer,std::string& result) {
+   // while (true) {
+       // std::cout<<"hi\n";
         // std::string input;
         std::string data;
         std::vector<std::string> separated;
@@ -63,10 +81,10 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
         }
         // Check if the first part contains only digits
         std::string firstPart= separated[0];
+       // std::cout<<"first part: "<<firstPart<<std::endl;
         firstPart.erase(remove_if(firstPart.begin(),
                                   firstPart.end(), isspace), firstPart.end());
         //std::string firstPart = trim(separated[0]); // Trim whitespace
-        std::cout <<"first part: "<< firstPart << std::endl;
         std::istringstream sizeStream(firstPart);
         sizeStream >> std::noskipws >> std::ws;
         char c;
@@ -75,7 +93,6 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
         // Check if all characters are digits
         while (sizeStream >> c) {
             if (!std::isdigit(c)) {
-                std::cout<<"false";
                 allDigits = false;
                 break;
             }
@@ -84,6 +101,11 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
         if (allDigits) {
             // If it contains only digits, erase the first element
             separated.erase(separated.begin());
+        }
+//        for (int i = 0; i < separated.size(); ++i) {
+//            std::cout<<separated[i]<<std::endl;
+//
+//        }
             for (const auto &input: separated) {                    // Check if the input is empty
                 if (input.empty()) {
                     // If input is empty, continue to the next iteration to read new input
@@ -117,11 +139,11 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
             for (int i = 0; i < urls.size(); ++i) {
                 std::cout<<"urls: "<<urls[i]<<std::endl;
             }
-
             //gets an array of urls and checks them according to the number attached
-            processURLs(size, args, urls, bloomFilter, commands);
-        }
-    }
+
+            processURLs(size, args, urls, bloomFilter, commands, result);
+
+    //}
         // Close the client socket after exiting the loop
    //     close(client_sock);
     }
