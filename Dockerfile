@@ -4,9 +4,9 @@ WORKDIR usr/src/ex1
 
 COPY ./src/ .
 
-RUN g++ -o ex1 ./main.cpp FalsePositive.cpp BloomFilter.cpp AddURL.cpp ArgsHandler.cpp HashGenerator.cpp IsBlackListed.cpp ICommand.cpp URLsHandler.cpp  Flow.cpp
+RUN g++ -o my_program Flow.cpp ArgsHandler.cpp URLsHandler.cpp sockets.cpp HashGenerator.cpp BloomFilter.cpp FalsePositive.cpp IsBlackListed.cpp AddURL.cpp -pthread
 
 
-CMD ["./ex1"]
+CMD ["./my_program"]
 
 
