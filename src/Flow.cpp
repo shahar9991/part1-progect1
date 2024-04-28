@@ -13,15 +13,10 @@
 #include "IsBlackListed.h"
 #include <cstring>
 #include <sstream>
-//
+//static global variables
 HashGenerator2 Flow::hashGenerator;
 std::vector<std::function<size_t(const std::string &)>> Flow::hashFunctions;
 BloomFilter* Flow::bloomFilter = nullptr;
-
-//BloomFilter Flow::bloomFilter(0, std::vector<std::function<size_t(const std::string&)>>());
-
-//int Flow::size;
-//BloomFilter Flow::bloomFilter(size,hashFunctions);
 
 // this class create all the needed instances and run the program
 void Flow::run(const char* buffer, char* response_buffer) {
@@ -37,15 +32,12 @@ void Flow::run(const char* buffer, char* response_buffer) {
     std::string firstPart= separated[0];
     std::istringstream ss(firstPart);
     ss >> bitsNumber;
-    std::cout << "size1: " << bitsNumber << std::endl;
     int intBitsNumber = std::stoi(bitsNumber);
     if(intBitsNumber>2) {
         buffer1=buffer;
     }
 
-   // HashGenerator2 hashGenerator;
     int size;
-//    size=intBitsNumber;
     std::vector<int> args;
     ArgsHandler argsHandler;
 
@@ -57,16 +49,12 @@ void Flow::run(const char* buffer, char* response_buffer) {
     const std::unordered_set<size_t> &trueKeysSet = hashGenerator.getTrueKeysSet();
 
     // Extract hash functions corresponding to true keys
-   // std::vector<std::function<size_t(const std::string &)>> hashFunctions;
     for (int key: args) {
         auto it = hashGenerator.getHashFunctionMap().find(key);
         if (it != hashGenerator.getHashFunctionMap().end()) {
             hashFunctions.push_back(it->second);
         }
     }
-std::cout<<"sizeee: "<<hashFunctions.size()<<std::endl;
-    // Create a BloomFilter instance with hash functions
-   // BloomFilter bloomFilter(size, hashFunctions);
 
     if (!bloomFilter) {
         // Initialize bloomFilter here
@@ -83,12 +71,10 @@ std::cout<<"sizeee: "<<hashFunctions.size()<<std::endl;
 
     URLsHandler urlsHandler;
     std::string result;
-    //todo should loop forever?
-    //  while (true) {
+
     std::vector<std::string> urls;  // Declare the vector to store URLs
-    //todo socket
     urlsHandler.readURLs(size, args, urls, bloomFilter, commands, buffer, result);
-//
+
     // Store the result in the response buffer
     strcpy(response_buffer, result.c_str());
     //  }

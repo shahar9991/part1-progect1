@@ -13,8 +13,6 @@
 
 using namespace std;
 
-int temp=0;
-bool hashFunctionsInitialized = false;
 
 void *handle_connection(void *client_socket_ptr) {
     int client_sock = *((int *) client_socket_ptr);
@@ -32,27 +30,6 @@ void *handle_connection(void *client_socket_ptr) {
             // Process the received data
             std::string result;
             char response_buffer[4096];
-            std::vector<std::string> separated;
-            std::istringstream iss(buffer);
-            std::string token;
-            std::string bitsNumber;
-            while (std::getline(iss, token, ',')) {
-                separated.push_back(token);
-            }
-            std::string firstPart= separated[0];
-            std::istringstream ss(firstPart);
-            ss >> bitsNumber;
-            int intBitsNumber = std::stoi(bitsNumber);
-
-            std::cout << "temp: " << temp << std::endl;
-            if(temp<intBitsNumber) {
-                temp=intBitsNumber;
-            }
-            std::cout << "size1: " << bitsNumber << std::endl;
-//            HashGenerator2 hashGenerator;
-//            std::vector<std::function<size_t(const std::string &)>> hashFunctions;
-
-
             Flow::run(buffer, response_buffer);
 
             // Send the response back to the client
