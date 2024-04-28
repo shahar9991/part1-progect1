@@ -17,11 +17,11 @@ void URLsHandler::processURLs(int size, const std::vector<int>& args, const std:
         //1 -> add the url to the bloom filter
         //2 -> check if the URL is in the bloom filter and is blacklisted
         int urlNumber = url[0] - '0';
-     //   std::cout<<"urls key: "<<urlNumber<<std::endl;
+
         std::string urlKey = std::to_string(urlNumber);
 
         std::string restOfURL = url.substr(1);
-        //std::cout<<"url number: "<<urlNumber<<std::endl;
+
         if (commands.find(urlKey) != commands.end()) {
 
             try {
@@ -49,8 +49,7 @@ void URLsHandler::processURLs(int size, const std::vector<int>& args, const std:
 
 void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter* bloomFilter, typename std::map<std::string, ICommand*>& commands,const char* buffer,std::string& result) {
    // while (true) {
-       // std::cout<<"hi\n";
-        // std::string input;
+
         std::string data;
         std::vector<std::string> separated;
         //todo socket
@@ -58,21 +57,6 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
 
         // Clear the vector before reading new URLs
         urls.clear();
-
-//        char buffer[4096];
-//        int read_bytes = read(client_sock, buffer, sizeof(buffer));
-//        if (read_bytes < 0) {
-//            // Error reading from socket
-//            perror("Error reading from socket");
-//            break;
-//        } else if (read_bytes == 0) {
-//            // Connection closed by client
-//            std::cout << "Connection closed by client\n";
-//            break;
-//        }
-//        // Append received data to the input string
-//        // input.append(buffer, read_bytes);
-//        data.append(buffer, read_bytes);
         data=buffer;
         std::istringstream iss(data);
         std::string token;
@@ -81,10 +65,10 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
         }
         // Check if the first part contains only digits
         std::string firstPart= separated[0];
-       // std::cout<<"first part: "<<firstPart<<std::endl;
+
         firstPart.erase(remove_if(firstPart.begin(),
                                   firstPart.end(), isspace), firstPart.end());
-        //std::string firstPart = trim(separated[0]); // Trim whitespace
+
         std::istringstream sizeStream(firstPart);
         sizeStream >> std::noskipws >> std::ws;
         char c;
@@ -102,10 +86,7 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
             // If it contains only digits, erase the first element
             separated.erase(separated.begin());
         }
-//        for (int i = 0; i < separated.size(); ++i) {
-//            std::cout<<separated[i]<<std::endl;
-//
-//        }
+
             for (const auto &input: separated) {                    // Check if the input is empty
                 if (input.empty()) {
                     // If input is empty, continue to the next iteration to read new input
@@ -136,16 +117,11 @@ void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<s
                     urls.push_back(input);
                 }
             }
-            for (int i = 0; i < urls.size(); ++i) {
-                std::cout<<"urls: "<<urls[i]<<std::endl;
-            }
-            //gets an array of urls and checks them according to the number attached
 
+            //gets an array of urls and checks them according to the number attached
             processURLs(size, args, urls, bloomFilter, commands, result);
 
-    //}
-        // Close the client socket after exiting the loop
-   //     close(client_sock);
+
     }
 
 

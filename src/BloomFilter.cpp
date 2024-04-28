@@ -41,11 +41,8 @@ std::string BloomFilter::isBlacklisted(const std::string& url) const {
 void BloomFilter::addURL(const std::string& url) {
     falsePositiveDict->AddUrlToDict(url);
    // falsePositiveDict->PrintDictionary();
-    std::cout<<"addUrl\n";
     for (const auto& hashFunction : hashFunctions) {
-        std::cout<<"before index\n";
         size_t index = hashFunction(url) % bitArray.size();
-        std::cout << "Setting index1 " << index << " to true for URL1: " << url << std::endl;
         // Only set the bit to true if it is not already true
         if (!bitArray[index]) {
             bitArray[index] = true;

@@ -7,7 +7,7 @@
 class Flow {
 //private:
     static HashGenerator2 hashGenerator; // Declare the static member
-//    static BloomFilter bloomFilter; // Declare the static member
+
     static std::vector<std::function<size_t(const std::string &)>> hashFunctions; // Declare the static member
     static BloomFilter* bloomFilter;
 

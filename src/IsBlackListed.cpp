@@ -8,3 +8,4 @@ std::string IsBlacklisted::execute(const std::string& url) {
     // Implement the execute function
     return bloomFilter->isBlacklisted(url);
 }
+

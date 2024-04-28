@@ -34,6 +34,7 @@ void *handle_connection(void *client_socket_ptr) {
 
             // Send the response back to the client
             int sent_bytes = send(client_sock, response_buffer, read_bytes, 0);
+            cout<<"response buffer: "<<response_buffer<<endl;
             if (sent_bytes < 0) {
                 perror("error sending to client");
                 break;
