@@ -10,7 +10,9 @@ class FalsePositiveDictionary {
 public:
     void AddUrlToDict(const std::string& url);
     bool SearchUrlInDict(const std::string& url) const;
-    
+    void PrintDictionary() const; // Function to print the dictionary
+
+
 private:
     std::unordered_set<std::string> urlSet;
 };

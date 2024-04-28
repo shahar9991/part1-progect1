@@ -93,7 +93,6 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args,const char* 
 
        std::istringstream ss(input);
        ss >> size;
-       std::cout << "size2: " << size << std::endl;
 
        // Check if the entered size is valid
        if (size <= 0) {

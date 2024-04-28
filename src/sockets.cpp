@@ -8,19 +8,20 @@
 #include <pthread.h>
 #include "Flow.h"
 #include <cstring>
+#include <sstream>
 
 
 using namespace std;
+
+int temp=0;
+bool hashFunctionsInitialized = false;
+
 void *handle_connection(void *client_socket_ptr) {
     int client_sock = *((int *) client_socket_ptr);
     char buffer[4096];
-    cout<<"before loop: "<<buffer<<endl;
     while (true) {
-        cout<<"buffer full"<<buffer<<endl;
         memset(buffer, 0, sizeof(buffer));
-        cout<<"before recieve\n";
         int read_bytes = recv(client_sock, buffer, sizeof(buffer), 0);
-        cout<<"read bytes"<<read_bytes<<endl;
         if (read_bytes == 0) {
             // Client disconnected
             break;
@@ -28,11 +29,30 @@ void *handle_connection(void *client_socket_ptr) {
             perror("error reading from client");
             break;
         } else {
-            cout << "Received data: " << buffer << endl;
-
             // Process the received data
             std::string result;
             char response_buffer[4096];
+            std::vector<std::string> separated;
+            std::istringstream iss(buffer);
+            std::string token;
+            std::string bitsNumber;
+            while (std::getline(iss, token, ',')) {
+                separated.push_back(token);
+            }
+            std::string firstPart= separated[0];
+            std::istringstream ss(firstPart);
+            ss >> bitsNumber;
+            int intBitsNumber = std::stoi(bitsNumber);
+
+            std::cout << "temp: " << temp << std::endl;
+            if(temp<intBitsNumber) {
+                temp=intBitsNumber;
+            }
+            std::cout << "size1: " << bitsNumber << std::endl;
+//            HashGenerator2 hashGenerator;
+//            std::vector<std::function<size_t(const std::string &)>> hashFunctions;
+
+
             Flow::run(buffer, response_buffer);
 
             // Send the response back to the client
@@ -43,13 +63,12 @@ void *handle_connection(void *client_socket_ptr) {
             }
         }
     }
-    cout<<"loop is out\n";
     close(client_sock);
     pthread_exit(NULL);
 }
 
 int main() {
-    const int server_port = 54321;
+    const int server_port = 54322;
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
         perror("error creating socket");

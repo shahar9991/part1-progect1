@@ -19,12 +19,10 @@ std::string BloomFilter::isBlacklisted(const std::string& url) const {
     std::string result;
     // Check if the URL is present in the FalsePositiveDictionary
     foundInDict = falsePositiveDict->SearchUrlInDict(url);
-
+    falsePositiveDict->PrintDictionary();
     // Iterate over hash functions and check bitArray
     bool anyBitFalse = false;
-//    size_t hashValue1 = std::hash<std::string>()(s);
-//    size_t index1 = std::hash<std::string>(url) % bitArray.size();
-//    std::cout << "Setting index3 " << index1 << " to true for URL3: " << url<<std::endl;
+    std::cout<<"foundInDict"<<foundInDict<<std::endl;
     for (const auto& hashFunction : hashFunctions) {
         std::cout<<"loopppp \n";
         size_t index = hashFunction(url) % bitArray.size();
@@ -43,10 +41,28 @@ std::string BloomFilter::isBlacklisted(const std::string& url) const {
 
 }
 
-
+//std::string BloomFilter::isBlacklisted(const std::string& url) const {
+//    bool foundInDict = false;
+//    std::string result;
+//
+//    // Check if the URL is present in the FalsePositiveDictionary
+//    foundInDict = falsePositiveDict->SearchUrlInDict(url);
+//
+//    // Calculate hash value and index using std::hash<std::string>
+//    size_t index = std::hash<std::string>{}(url) % bitArray.size();
+//
+//    // Print the index and set the result accordingly
+//    std::cout << "Setting index " << index << " to true for URL: " << url << std::endl;
+//   // result = (bitArray[index] ? "false" : "true") + (foundInDict ? "true" : "false");
+//
+//    std::cout << "Result: " << result << std::endl;
+//
+//    return result;
+//}
 
 void BloomFilter::addURL(const std::string& url) {
     falsePositiveDict->AddUrlToDict(url);
+    falsePositiveDict->PrintDictionary();
     std::cout<<"addUrl\n";
     for (const auto& hashFunction : hashFunctions) {
         std::cout<<"before index\n";

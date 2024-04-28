@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <cstring>
 //this class handle the urls adresses from the user first check if the url is leagal then excute the command. 
-void URLsHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands,std::string& result) {
+void URLsHandler::processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter* bloomFilter, typename std::map<std::string, ICommand*>& commands,std::string& result) {
 
     for (const auto& url : urls) {
         // Extract the URL number (1 or 2) from the string- it indicates the task to be done.
@@ -47,7 +47,7 @@ void URLsHandler::processURLs(int size, const std::vector<int>& args, const std:
 }
 
 
-void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, typename std::map<std::string, ICommand*>& commands,const char* buffer,std::string& result) {
+void URLsHandler::readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter* bloomFilter, typename std::map<std::string, ICommand*>& commands,const char* buffer,std::string& result) {
    // while (true) {
        // std::cout<<"hi\n";
         // std::string input;
