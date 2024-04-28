@@ -23,7 +23,8 @@ tests/test_main.cpp # this is the main for tests
 tests/test_hash.cpp # this file contain the tests
 tests/test_FalsePositive.cpp # this file contain the tests
 tests/test_BloomFilter.cpp # this file contain the tests
-tests/test_readSizeAndArgs.cpp # this file contain the tests
+tests/test_readSizeAndArgs.cpp
+        src/sockets.cpp # this file contain the tests
 
 
 

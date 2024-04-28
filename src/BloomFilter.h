@@ -16,7 +16,7 @@ public:
 
     void addURL(const std::string& url);
 
-    void isBlacklisted(const std::string& url) const;
+    std::string isBlacklisted(const std::string& url) const;
 
     ~BloomFilter();  // Declare the destructor
 
@@ -26,4 +26,4 @@ private:
     FalsePositiveDictionary* falsePositiveDict;  // Pointer to FalsePositiveDictionary
 };
 
-#endif // BLOOM_FILTER2_H
+#endif // BLOOM_FILTER_H

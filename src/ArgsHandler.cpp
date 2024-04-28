@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+#include <unistd.h> //include for read. can we use it???
 
 // Function to filter out duplicate values in the args vector
 // and return a vector containing distinct values
@@ -17,16 +18,57 @@ std::vector<int> ArgsHandler::PrintRealArgs(int size, const std::vector<int>& ar
 }
 
 //Function to read size and arguments from user input
-void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args) {
+void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args,const char* buffer) {
    while (true) {
        std::string input;
-       std::getline(std::cin, input);
+       std::string data;
+       std::vector<std::string> separated;
+
+       // Append received data to the input string
+       data=buffer;
+
+
+
+       std::istringstream iss(data);
+       std::string token;
+       while (std::getline(iss, token, ',')) {
+           separated.push_back(token);
+       }
+
+
+
+       // Check if the first part contains only digits
+       std::string firstPart= separated[0];
+       firstPart.erase(remove_if(firstPart.begin(),
+                                                           firstPart.end(), isspace), firstPart.end());
+
+       std::istringstream sizeStream(firstPart);
+       sizeStream >> std::noskipws >> std::ws;
+       char c;
+       bool allDigits = true;
+
+       // Check if all characters are digits
+       while (sizeStream >> c) {
+           if (!std::isdigit(c)) {
+               allDigits = false;
+               break;
+           }
+       }
+       if (allDigits) {
+           input=separated[0];
+           std::cout<<"size and args "<<input<<std::endl;
+       } else{
+           std::cout<<"go to url handler"<<std::endl;
+           return ;
+       }
+
        std::istringstream ss(input);
        ss >> size;
 
        // Check if the entered size is valid
        if (size <= 0) {
            continue;
+
        }
 
        args.clear();
@@ -42,14 +84,12 @@ void ArgsHandler::readSizeAndArgs(int& size, std::vector<int>& args) {
                break;
            }
        }
-
        // If args is not empty, the input is valid, break from the loop
        if (!args.empty()) {
+
            PrintRealArgs(size, args);
            break;
        }
 
    }
-
-
 }

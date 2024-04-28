@@ -4,16 +4,13 @@
 
 #include "ICommand.h"
 #include "BloomFilter.h"
-#include <string>
 
 class AddURL : public ICommand {
 public:
     AddURL(BloomFilter* filter);
-    void execute(const std::string& url) override;
-
+    std::string execute(const std::string& url) override;
 private:
     BloomFilter* bloomFilter;
 };
 
 #endif // ADDURL_H
-
