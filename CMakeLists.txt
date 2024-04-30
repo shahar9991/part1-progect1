@@ -19,7 +19,7 @@ src/ArgsHandler1.cpp # this is where the code we want to test
 
 )
 set(TEST_FILES
-tests/test_main.cpp # this is the main for tests
+        # this is the main for tests
 tests/test_hash.cpp # this file contain the tests
 tests/test_FalsePositive.cpp # this file contain the tests
 tests/test_BloomFilter.cpp # this file contain the tests
