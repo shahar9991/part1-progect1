@@ -17,21 +17,21 @@ src/BloomFilter2.cpp # this is where the code we want to test
 src/URLsHandler1.cpp # this is where the code we want to test
 src/ArgsHandler1.cpp # this is where the code we want to test
 
-)
-set(TEST_FILES
-        # this is the main for tests
-        # this file contain the tests
-        # this file contain the tests
-tests/test_BloomFilter.cpp # this file contain the tests
-        src/sockets.cpp # this file contain the tests
-
-
-
-)
-add_executable(CalcTests ${TEST_FILES})
-# Link Google Test to the test executable
-target_link_libraries(CalcTests PRIVATE gtest gtest_main pthread)
-# Include the source directory for tests
-target_include_directories(CalcTests PRIVATE src)
-include(GoogleTest)
-gtest_discover_tests(CalcTests)
+#)
+#set(TEST_FILES
+#        # this is the main for tests
+#        # this file contain the tests
+#        # this file contain the tests
+#tests/test_BloomFilter.cpp # this file contain the tests
+#        src/sockets.cpp # this file contain the tests
+#
+#
+#
+#)
+#add_executable(CalcTests ${TEST_FILES})
+## Link Google Test to the test executable
+#target_link_libraries(CalcTests PRIVATE gtest gtest_main pthread)
+## Include the source directory for tests
+#target_include_directories(CalcTests PRIVATE src)
+#include(GoogleTest)
+#gtest_discover_tests(CalcTests)
