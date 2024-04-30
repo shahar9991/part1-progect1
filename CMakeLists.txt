@@ -16,7 +16,7 @@ src/FalsePositive.cpp # this is where the code we want to test
 src/BloomFilter2.cpp # this is where the code we want to test
 src/URLsHandler1.cpp # this is where the code we want to test
 src/ArgsHandler1.cpp # this is where the code we want to test
-
+)
 #)
 #set(TEST_FILES
 #        # this is the main for tests
