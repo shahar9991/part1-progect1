@@ -12,7 +12,7 @@ class URLsHandler {
 public:
     URLsHandler() = default;
 
-    void processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter& bloomFilter, std::map<std::string, ICommand*>& commands);
-    void readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter& bloomFilter, std::map<std::string, ICommand*>& commands);
+    void processURLs(int size, const std::vector<int>& args, const std::vector<std::string>& urls, BloomFilter* bloomFilter, std::map<std::string, ICommand*>& commands,std::string& result);
+    void readURLs(int size, const std::vector<int>& args, std::vector<std::string>& urls, BloomFilter* bloomFilter, std::map<std::string, ICommand*>& commands,const char* buffer,std::string& result);
 };
 #endif // URLS_HANDLER_H

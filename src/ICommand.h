@@ -6,7 +6,7 @@
 
 class ICommand {
 public:
-    virtual void execute(const std::string& url) = 0;
+    virtual std::string execute(const std::string& url) = 0;
     virtual ~ICommand() {}
 };
 
