@@ -40,14 +40,14 @@ TEST(test_ReadSizeAndArgs, ReadSizeAndArgs_ValidInput) {
     ArgsHandler argsHandler;
     int size;
     std::vector<int> args;
-
+    const char* buffer;
     // Set up input stream with valid input
     std::istringstream input("3 1 2");
 
     // Redirect cin to the input stream
     std::streambuf* originalCin = std::cin.rdbuf(input.rdbuf());
 
-    argsHandler.readSizeAndArgs(size, args);
+    argsHandler.readSizeAndArgs(size, args,buffer);
 
     // Restore cin
     std::cin.rdbuf(originalCin);
